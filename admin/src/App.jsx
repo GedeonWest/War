@@ -7,8 +7,6 @@ import ResourcesEdit from './pages/ResourcesEdit';
 import MapsEdit from './pages/MapsEdit';
 import './styles/app.scss';
 
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-
 export default function App() {
   return (
     <Layout>

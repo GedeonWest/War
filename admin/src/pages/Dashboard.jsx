@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAdminStore } from '../store/adminStore';
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 import Settings from '../components/Settings';
 
 export default function Dashboard() {
@@ -30,9 +29,9 @@ export default function Dashboard() {
         </p>
       )}
       <p>
-        <Link to={`${base}/agents/active`}>Агенты (активные)</Link> ·{' '}
-        <Link to={`${base}/resources`}>Ресурсы</Link> ·{' '}
-        <Link to={`${base}/maps`}>Карты</Link>
+        <Link to="/agents/active">Агенты (активные)</Link> ·{' '}
+        <Link to="/resources">Ресурсы</Link> ·{' '}
+        <Link to="/maps">Карты</Link>
       </p>
     </div>
   );

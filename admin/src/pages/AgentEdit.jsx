@@ -5,8 +5,6 @@ import { getStoredGitHub } from '../components/Settings';
 import { saveFile } from '../services/githubApi';
 import '../styles/pages/agent-edit.scss';
 
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-
 const EMPTY_ITEM = {
   status: '',
   announce: '',
@@ -54,7 +52,7 @@ export default function AgentEdit() {
     } else {
       updateItem(category, Number(index), item);
     }
-    navigate(`${base}/agents/${category}`);
+    navigate(`/agents/${category}`);
   };
 
   const handleSaveToGitHub = async () => {
@@ -135,7 +133,7 @@ export default function AgentEdit() {
           <button type="button" className="agent-edit__btn" onClick={handleSaveToGitHub}>
             Сохранить в GitHub
           </button>
-          <Link to={`${base}/agents/${category}`} className="agent-edit__btn">Отмена</Link>
+          <Link to={`/agents/${category}`} className="agent-edit__btn">Отмена</Link>
         </div>
       </form>
     </div>

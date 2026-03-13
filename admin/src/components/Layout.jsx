@@ -1,6 +1,4 @@
 import { Link, useParams } from 'react-router-dom';
-
-const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 import '../styles/components/layout.scss';
 
 const CATEGORIES = [
@@ -23,10 +21,10 @@ export default function Layout({ children }) {
   return (
     <div className="admin-layout">
       <header className="admin-layout__header">
-        <Link to={base || '/'} className="admin-layout__brand">
+        <Link to="/" className="admin-layout__brand">
           Админка
         </Link>
-        <Link to={`${base}/`} className="admin-layout__link">
+        <Link to="/" className="admin-layout__link">
           Обзор
         </Link>
       </header>
@@ -36,16 +34,16 @@ export default function Layout({ children }) {
             {CATEGORIES.map(({ key, label }) => (
               <Link
                 key={key}
-                to={`${base}/agents/${key}`}
+                to={`/agents/${key}`}
                 className={`admin-layout__nav-link ${category === key ? 'admin-layout__nav-link_active' : ''}`}
               >
                 {label}
               </Link>
             ))}
-            <Link to={`${base}/resources`} className="admin-layout__nav-link">
+            <Link to="/resources" className="admin-layout__nav-link">
               Ресурсы
             </Link>
-            <Link to={`${base}/maps`} className="admin-layout__nav-link">
+            <Link to="/maps" className="admin-layout__nav-link">
               Карты
             </Link>
           </nav>
