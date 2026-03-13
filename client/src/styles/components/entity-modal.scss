@@ -1,0 +1,111 @@
+@use '../base/variables' as *;
+
+.entity-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  padding: $spacing-m;
+}
+
+.entity-modal__overlay {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(13, 21, 35, 0.68);
+}
+
+.entity-modal__panel {
+  position: relative;
+  z-index: 1;
+  width: min(920px, 100%);
+  max-height: min(88vh, 900px);
+  overflow: auto;
+  background: linear-gradient(180deg, #ffffff, #f6f9ff);
+  border: 2px solid rgba(145, 113, 42, 0.7);
+  box-shadow: 0 18px 40px rgba(17, 34, 58, 0.38);
+  padding: $spacing-l;
+}
+
+.entity-modal__close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  border: 0;
+  background: transparent;
+  color: $color-text-muted;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.entity-modal__title {
+  margin: 0 0 $spacing-m;
+}
+
+.entity-modal__image-wrap {
+  margin-bottom: $spacing-m;
+  border: 1px solid rgba($color-border, 0.9);
+  background: #eef4ff;
+}
+
+.entity-modal__image {
+  width: 100%;
+  height: auto;
+  max-height: min(58vh, 700px);
+  object-fit: contain;
+}
+
+.entity-modal__fields {
+  margin: 0;
+  display: grid;
+  gap: $spacing-s;
+}
+
+.entity-modal__field {
+  margin: 0;
+  display: grid;
+  gap: 4px;
+}
+
+.entity-modal__field dt {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: $color-text-muted;
+}
+
+.entity-modal__field dd {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.entity-modal_full-image .entity-modal__panel {
+  width: min(1300px, 100%);
+  height: min(92vh, 1000px);
+  display: flex;
+  flex-direction: column;
+}
+
+.entity-modal_full-image .entity-modal__image-wrap {
+  flex: 1;
+  margin: 0;
+}
+
+.entity-modal_full-image .entity-modal__image {
+  height: 100%;
+  max-height: none;
+}
+
+@media (max-width: $breakpoint-md) {
+  .entity-modal {
+    padding: $spacing-s;
+  }
+
+  .entity-modal__panel {
+    padding: $spacing-m;
+    max-height: 94vh;
+  }
+}

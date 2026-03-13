@@ -35,7 +35,7 @@ export const useDataStore = create((set, get) => ({
   getDossiers: () => {
     const { raw } = get();
     if (!raw) return [];
-    const categories = ['active', 'agent', 'crown', 'secrown', 'target', 'legacy', 'inactive', 'prison'];
+    const categories = ['npcs', 'artifacts', 'active', 'agent', 'crown', 'secrown', 'target', 'legacy', 'inactive', 'prison'];
     return categories.flatMap((cat) => (raw[cat] || []).map((item) => ({ ...item, category: cat })));
   },
 

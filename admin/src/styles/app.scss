@@ -14,3 +14,57 @@
   color: #c00;
   margin: 0;
 }
+
+.admin-edit__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-s;
+  margin: $spacing-m 0;
+}
+
+.admin-edit__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-m;
+}
+
+.admin-edit__item {
+  background: #f7f7f7;
+  border: 1px solid $color-border;
+  border-radius: $radius-s;
+  padding: $spacing-m;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-s;
+}
+
+.admin-edit__field {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.admin-edit__label {
+  font-size: 0.875rem;
+  color: $color-text-muted;
+}
+
+.admin-edit__field input,
+.admin-edit__field textarea,
+.admin-edit__toolbar button,
+.admin-edit__item > button {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid $color-border;
+  border-radius: $radius-s;
+  background: #fff;
+}
+
+.admin-edit__toolbar button,
+.admin-edit__item > button {
+  width: auto;
+  cursor: pointer;
+}

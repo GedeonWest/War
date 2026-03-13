@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react';
 import { useDataStore } from '../store/useDataStore';
 import AgentCard from '../components/AgentCard';
+import EntityModal from '../components/EntityModal';
+import { formatName } from '../components/AgentCard';
 import '../styles/pages/dossiers.scss';
 
 export default function Dossiers() {
@@ -8,6 +10,7 @@ export default function Dossiers() {
   const loading = useDataStore((s) => s.loading);
   const error = useDataStore((s) => s.error);
   const [filter, setFilter] = useState('');
+  const [selected, setSelected] = useState(null);
 
   const list = useMemo(() => getDossiers(), [getDossiers]);
   const filtered = useMemo(() => {
@@ -39,12 +42,31 @@ export default function Dossiers() {
       <ul className="dossiers__list">
         {filtered.map((item, i) => (
           <li key={i} className="dossiers__item">
-            <AgentCard item={item} category={item.category} />
+            <AgentCard item={item} category={item.category} onClick={() => setSelected(item)} />
           </li>
         ))}
       </ul>
       <p className="dossiers__count">Найдено записей: {filtered.length}</p>
       {filtered.length === 0 && <p className="page__muted">Нет записей.</p>}
+      <EntityModal
+        open={Boolean(selected)}
+        title={selected ? formatName(selected) : ''}
+        image={selected ? (selected.imgref || selected.image) : ''}
+        onClose={() => setSelected(null)}
+        fields={
+          selected
+            ? [
+                { label: 'Категория', value: selected.category },
+                { label: 'Статус', value: selected.status },
+                { label: 'Роль', value: selected.role || selected.title },
+                { label: 'Описание', value: selected.description || selected.background || selected.longDescription },
+                { label: 'Кратко', value: selected.summary || selected.shortDescription || selected.appearance },
+                { label: 'Навыки', value: selected.skills },
+                { label: 'Смерть', value: selected.death },
+              ]
+            : []
+        }
+      />
     </div>
   );
 }

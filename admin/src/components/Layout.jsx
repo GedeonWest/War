@@ -1,22 +1,15 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import '../styles/components/layout.scss';
 
-const CATEGORIES = [
-  { key: 'active', label: 'Активные' },
-  { key: 'agent', label: 'Агенты' },
-  { key: 'crown', label: 'Корона' },
-  { key: 'secrown', label: 'Претенденты на корону' },
-  { key: 'target', label: 'Цели' },
-  { key: 'inactive', label: 'Неактивные' },
-  { key: 'legacy', label: 'Наследие' },
-  { key: 'prison', label: 'В заключении' },
-  { key: 'dead', label: 'Погибшие' },
-  { key: 'dpc', label: 'DPC' },
-  { key: 'pc', label: 'PC' },
+const SECTIONS = [
+  { path: '/npcs', label: 'НПС' },
+  { path: '/artifacts', label: 'Артефакты' },
+  { path: '/materials', label: 'Материалы' },
+  { path: '/maps', label: 'Карты' },
 ];
 
 export default function Layout({ children }) {
-  const { category } = useParams();
+  const { pathname } = useLocation();
 
   return (
     <div className="admin-layout">
@@ -31,21 +24,15 @@ export default function Layout({ children }) {
       <div className="admin-layout__body">
         <aside className="admin-layout__aside">
           <nav className="admin-layout__nav">
-            {CATEGORIES.map(({ key, label }) => (
+            {SECTIONS.map(({ path, label }) => (
               <Link
-                key={key}
-                to={`/agents/${key}`}
-                className={`admin-layout__nav-link ${category === key ? 'admin-layout__nav-link_active' : ''}`}
+                key={path}
+                to={path}
+                className={`admin-layout__nav-link ${pathname.startsWith(path) ? 'admin-layout__nav-link_active' : ''}`}
               >
                 {label}
               </Link>
             ))}
-            <Link to="/resources" className="admin-layout__nav-link">
-              Ресурсы
-            </Link>
-            <Link to="/maps" className="admin-layout__nav-link">
-              Карты
-            </Link>
           </nav>
         </aside>
         <main className="admin-layout__main">{children}</main>

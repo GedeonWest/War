@@ -1,6 +1,8 @@
 import { useMemo, useState } from 'react';
 import { useDataStore } from '../store/useDataStore';
 import AgentCard from '../components/AgentCard';
+import EntityModal from '../components/EntityModal';
+import { formatName } from '../components/AgentCard';
 import '../styles/pages/deceased.scss';
 
 export default function Deceased() {
@@ -8,6 +10,7 @@ export default function Deceased() {
   const loading = useDataStore((s) => s.loading);
   const error = useDataStore((s) => s.error);
   const [filter, setFilter] = useState('');
+  const [selected, setSelected] = useState(null);
 
   const list = useMemo(() => getDeceased(), [getDeceased]);
   const filtered = useMemo(() => {
@@ -39,12 +42,28 @@ export default function Deceased() {
       <ul className="deceased__list">
         {filtered.map((item, i) => (
           <li key={i} className="deceased__item">
-            <AgentCard item={item} />
+            <AgentCard item={item} onClick={() => setSelected(item)} />
           </li>
         ))}
       </ul>
       <p className="deceased__count">Найдено записей: {filtered.length}</p>
       {filtered.length === 0 && <p className="page__muted">Нет записей.</p>}
+      <EntityModal
+        open={Boolean(selected)}
+        title={selected ? formatName(selected) : ''}
+        image={selected ? (selected.imgref || selected.image) : ''}
+        onClose={() => setSelected(null)}
+        fields={
+          selected
+            ? [
+                { label: 'Статус', value: selected.status },
+                { label: 'Причина смерти', value: selected.death },
+                { label: 'Описание', value: selected.description || selected.background || selected.longDescription },
+                { label: 'Детали', value: selected.summary || selected.shortDescription || selected.appearance },
+              ]
+            : []
+        }
+      />
     </div>
   );
 }

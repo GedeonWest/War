@@ -1,10 +1,10 @@
 import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
-import AgentList from './pages/AgentList';
-import AgentEdit from './pages/AgentEdit';
-import ResourcesEdit from './pages/ResourcesEdit';
-import MapsEdit from './pages/MapsEdit';
+import NpcsEdit from './pages/NpcsEdit';
+import ArtifactsEdit from './pages/ArtifactsEdit';
+import MaterialsEdit from './pages/MaterialsEdit';
+import MapsSimpleEdit from './pages/MapsSimpleEdit';
 import './styles/app.scss';
 
 export default function App() {
@@ -12,11 +12,10 @@ export default function App() {
     <Layout>
       <Routes>
         <Route path="/" element={<Dashboard />} />
-        <Route path="/agents/:category" element={<AgentList />} />
-        <Route path="/agents/:category/new" element={<AgentEdit />} />
-        <Route path="/agents/:category/:index" element={<AgentEdit />} />
-        <Route path="/resources" element={<ResourcesEdit />} />
-        <Route path="/maps" element={<MapsEdit />} />
+        <Route path="/npcs" element={<NpcsEdit />} />
+        <Route path="/artifacts" element={<ArtifactsEdit />} />
+        <Route path="/materials" element={<MaterialsEdit />} />
+        <Route path="/maps" element={<MapsSimpleEdit />} />
       </Routes>
     </Layout>
   );
