@@ -1,9 +1,17 @@
 import { create } from 'zustand';
 
 const getDataUrl = () => {
-  const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-  const clientBase = base.replace(/\/admin\/?$/, '') || '/';
-  return `${window.location.origin}${clientBase}data/agents.json`;
+  const base = import.meta.env.BASE_URL || '/';
+  let clientBase = base.replace(/admin\/?$/, '');
+
+  if (!clientBase.startsWith('/')) {
+    clientBase = `/${clientBase}`;
+  }
+  if (!clientBase.endsWith('/')) {
+    clientBase = `${clientBase}/`;
+  }
+
+  return new URL(`${clientBase}data/agents.json`, window.location.origin).toString();
 };
 
 export const useAdminStore = create((set, get) => ({
