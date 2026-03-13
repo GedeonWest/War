@@ -1,0 +1,91 @@
+@use '../base/variables' as *;
+
+.page__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-l;
+}
+
+.page__list-item {
+  padding: $spacing-m;
+  background: linear-gradient(rgba(#fff, 0.9), rgba(#fff, 0.93));
+  border: 3px double rgba(167, 127, 50, 0.86);
+  border-radius: $radius-m;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 235, 188, 0.52),
+    0 0 14px rgba(173, 132, 54, 0.14),
+    $shadow-card;
+  position: relative;
+  overflow: hidden;
+}
+
+.page__list-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  bottom: 0;
+  background: linear-gradient(180deg, $color-brand-blue, $color-brand-green);
+}
+
+.page__list_maps .page__list-item {
+  max-width: 800px;
+}
+
+.page__map-img {
+  margin-top: $spacing-s;
+  border-radius: $radius-s;
+  width: 100%;
+}
+
+.page__list-title {
+  display: block;
+  margin-bottom: $spacing-s;
+  font-family: $font-family-display;
+  font-size: 1.1rem;
+}
+
+.page__list-text {
+  margin-top: 0;
+  color: $color-text-muted;
+}
+
+.maps-panel {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-m;
+}
+
+.maps-panel__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-s;
+}
+
+.maps-panel__tab {
+  text-transform: none;
+  font-size: 0.85rem;
+}
+
+.maps-panel__tab_active {
+  border-color: rgba($color-brand-green, 0.7);
+  box-shadow:
+    inset 0 1px 0 rgba(#fff, 0.9),
+    inset 0 -2px 0 rgba($color-brand-green, 0.35),
+    0 10px 18px rgba($color-brand-green, 0.18);
+}
+
+@media (max-width: $breakpoint-md) {
+  .maps-panel__tabs {
+    gap: $spacing-xs;
+  }
+
+  .maps-panel__tab {
+    flex: 1 1 calc(50% - 4px);
+    justify-content: center;
+  }
+}

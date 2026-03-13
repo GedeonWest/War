@@ -1,0 +1,133 @@
+@use '../base/variables' as *;
+
+.map-viewer {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-m;
+}
+
+.map-viewer__header {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-s;
+}
+
+.map-viewer__title {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.map-viewer__controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: $spacing-s;
+}
+
+.map-viewer__zoom {
+  min-width: 56px;
+  text-align: center;
+  color: $color-text-muted;
+  font-weight: 700;
+}
+
+.map-viewer__viewport {
+  border: 1px solid rgba($color-brand-blue, 0.35);
+  border-radius: $radius-m;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 30% 20%, rgba($color-brand-blue, 0.12), transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba($color-brand-green, 0.12), transparent 50%),
+    #0b1220;
+  min-height: 320px;
+  cursor: grab;
+}
+
+.map-viewer__viewport_drag {
+  cursor: grabbing;
+}
+
+.map-viewer__stage {
+  position: relative;
+  transform-origin: center center;
+  transition: transform 0.08s linear;
+}
+
+.map-viewer__img {
+  width: 100%;
+  user-select: none;
+  pointer-events: none;
+}
+
+.map-viewer__marker {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid rgba($color-brand-green, 0.65);
+  color: #d4fff4;
+  background:
+    radial-gradient(circle at 40% 40%, rgba(#fff, 0.7), rgba($color-brand-green, 0.35)),
+    rgba($color-brand-blue, 0.4);
+  box-shadow:
+    0 0 18px rgba($color-brand-green, 0.55),
+    inset 0 1px 2px rgba(#fff, 0.5);
+  cursor: pointer;
+}
+
+.map-viewer__marker_active {
+  border-color: rgba(#fff, 0.9);
+  box-shadow:
+    0 0 26px rgba($color-brand-green, 0.75),
+    inset 0 1px 2px rgba(#fff, 0.8);
+}
+
+.map-viewer__marker-panel {
+  padding: $spacing-m;
+  border: 1px solid rgba($color-brand-blue, 0.35);
+  border-radius: $radius-s;
+  background: linear-gradient(180deg, rgba(#fff, 0.9), rgba($color-bg-soft, 0.95));
+}
+
+.map-viewer__marker-title {
+  margin: 0 0 $spacing-xs;
+}
+
+.map-viewer__marker-text {
+  margin: 0;
+  color: $color-text-muted;
+}
+
+.map-viewer__description {
+  margin: 0;
+  color: $color-text-muted;
+}
+
+@media (max-width: $breakpoint-md) {
+  .map-viewer__viewport {
+    min-height: 220px;
+  }
+
+  .map-viewer__controls {
+    gap: $spacing-xs;
+  }
+
+  .map-viewer__zoom {
+    min-width: 48px;
+    font-size: 0.85rem;
+  }
+
+  .map-viewer__marker {
+    width: 26px;
+    height: 26px;
+  }
+}
+
+@media (min-width: $breakpoint-md) {
+  .map-viewer__header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}

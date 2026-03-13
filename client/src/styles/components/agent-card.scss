@@ -1,0 +1,105 @@
+@use '../base/variables' as *;
+
+.agent-card {
+  background: linear-gradient(rgba(#fff, 0.9), rgba(#fff, 0.92));
+  border: 3px double rgba(167, 127, 50, 0.88);
+  border-radius: $radius-m;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 235, 188, 0.55),
+    0 0 16px rgba(173, 132, 54, 0.16),
+    $shadow-card;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.agent-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 3px;
+  background: linear-gradient(90deg, rgba($color-brand-blue, 0.95), rgba($color-brand-green, 0.9));
+}
+
+.agent-card__media {
+  aspect-ratio: 1;
+  background-color: $color-border;
+}
+
+.agent-card__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.agent-card__placeholder {
+  width: 100%;
+  height: 100%;
+  background-color: $color-border;
+}
+
+.agent-card__body {
+  padding: $spacing-m;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-s;
+}
+
+.agent-card__title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.3;
+  font-family: $font-family-display;
+}
+
+.agent-card__category {
+  font-size: 0.75rem;
+  color: $color-brand-blue;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-weight: 700;
+  display: inline-block;
+  padding: 2px 8px;
+  border: 1px solid rgba($color-brand-blue, 0.3);
+  border-radius: $radius-s;
+  background-color: rgba($color-brand-blue, 0.05);
+}
+
+.agent-card__label {
+  font-weight: 600;
+  color: $color-text-muted;
+}
+
+.agent-card__text,
+.agent-card__attitude,
+.agent-card__death {
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.agent-card__text_collapse {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.agent-card__death {
+  color: $color-danger;
+}
+
+@media (min-width: $breakpoint-sm) {
+  .agent-card {
+    flex-direction: row;
+  }
+
+  .agent-card__media {
+    width: 160px;
+    min-width: 160px;
+    aspect-ratio: auto;
+  }
+}

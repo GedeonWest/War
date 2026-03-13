@@ -1,0 +1,63 @@
+@use '../base/variables' as *;
+
+.agent-edit__form {
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-m;
+}
+
+.agent-edit__field {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.agent-edit__label {
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.agent-edit__input {
+  padding: $spacing-s $spacing-m;
+  border: 1px solid $color-border;
+  border-radius: $radius-s;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+    border-color: $color-accent;
+  }
+}
+
+textarea.agent-edit__input {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.agent-edit__actions {
+  display: flex;
+  gap: $spacing-m;
+  flex-wrap: wrap;
+  margin-top: $spacing-m;
+}
+
+.agent-edit__btn {
+  padding: $spacing-s $spacing-m;
+  border: 1px solid $color-border;
+  border-radius: $radius-s;
+  background: $color-bg-card;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+
+  &:hover {
+    background: $color-bg;
+  }
+}
+
+.agent-edit__btn_primary {
+  background: $color-accent;
+  color: #fff;
+  border-color: $color-accent;
+}

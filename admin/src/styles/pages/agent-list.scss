@@ -1,0 +1,53 @@
+@use '../base/variables' as *;
+
+.agent-list__toolbar {
+  display: flex;
+  gap: $spacing-m;
+  margin-bottom: $spacing-l;
+}
+
+.agent-list__btn {
+  padding: $spacing-s $spacing-m;
+  border: 1px solid $color-border;
+  border-radius: $radius-s;
+  background: $color-bg-card;
+  cursor: pointer;
+
+  &:hover {
+    background: $color-bg;
+  }
+}
+
+.agent-list__btn_primary {
+  background: $color-accent;
+  color: #fff;
+  border-color: $color-accent;
+}
+
+.agent-list__btn_danger {
+  color: #c00;
+  border-color: #c00;
+}
+
+.agent-list__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.agent-list__item {
+  display: flex;
+  align-items: center;
+  gap: $spacing-m;
+  padding: $spacing-m 0;
+  border-bottom: 1px solid $color-border;
+}
+
+.agent-list__name {
+  flex: 1;
+  min-width: 0;
+}
+
+.agent-list__link {
+  flex-shrink: 0;
+}

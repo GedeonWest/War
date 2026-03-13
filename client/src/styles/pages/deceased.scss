@@ -1,0 +1,54 @@
+@use '../base/variables' as *;
+
+.deceased__toolbar {
+  margin-bottom: $spacing-l;
+}
+
+.deceased__search {
+  width: 100%;
+  max-width: 560px;
+  padding: 12px 14px;
+  border: 1px solid $color-border;
+  border-radius: $radius-s;
+  font-size: 1rem;
+  color: $color-text;
+  background-color: $color-bg-soft;
+
+  &:focus {
+    outline: none;
+    border-color: rgba($color-brand-blue, 0.8);
+    box-shadow: 0 0 0 3px rgba($color-brand-blue, 0.12);
+  }
+}
+
+.deceased__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: $spacing-m;
+}
+
+.deceased__item {
+  margin: 0;
+}
+
+.deceased__count {
+  margin-top: $spacing-m;
+  color: $color-text-muted;
+  font-size: 0.9rem;
+  border-top: 1px dashed rgba($color-brand-blue, 0.3);
+  padding-top: $spacing-s;
+}
+
+@media (min-width: $breakpoint-md) {
+  .deceased__list {
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .deceased__search {
+    max-width: 100%;
+  }
+}

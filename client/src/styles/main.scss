@@ -1,0 +1,187 @@
+@use 'base/globals';
+@use 'base/variables' as *;
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background:
+    linear-gradient(to bottom, rgba(#fff, 0.76), rgba(#fff, 0.9) 180px, #fff 320px),
+    url('/assets/images/wall.jpg') center top / cover no-repeat;
+}
+
+.page {
+  background: linear-gradient(rgba(#fff, 0.9), rgba(#fff, 0.92));
+  border: 3px double rgba(166, 126, 54, 0.9);
+  border-radius: $radius-m;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 236, 186, 0.58),
+    0 0 20px rgba(176, 135, 58, 0.18),
+    $shadow-card;
+  padding: $spacing-l;
+  position: relative;
+  overflow: hidden;
+}
+
+.page::before,
+.page::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border: 1px solid rgba(164, 124, 46, 0.85);
+}
+
+.page::before {
+  top: 8px;
+  left: 8px;
+  border-right: 0;
+  border-bottom: 0;
+}
+
+.page::after {
+  bottom: 8px;
+  right: 8px;
+  border-left: 0;
+  border-top: 0;
+}
+
+.page__title {
+  margin: 0 0 $spacing-s;
+  font-size: 1.5rem;
+  color: $color-text;
+  position: relative;
+  padding-bottom: $spacing-s;
+}
+
+.page__title::after {
+  content: '';
+  display: block;
+  width: 110px;
+  height: 2px;
+  margin-top: 8px;
+  background: linear-gradient(90deg, $color-brand-blue, $color-brand-green);
+}
+
+.page::selection {
+  background: rgba($color-brand-green, 0.2);
+}
+
+.arcane-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 2px solid rgba(145, 211, 172, 0.75);
+  border-radius: $radius-s;
+  background:
+    linear-gradient(160deg, rgba(#3da549, 0.92), rgba(#4577bc, 0.94)),
+    linear-gradient(0deg, rgba(#1f3e64, 0.35), rgba(#2a6f52, 0.35));
+  box-shadow:
+    inset 0 1px 0 rgba(#dffff1, 0.5),
+    inset 0 -2px 0 rgba(#1f3e64, 0.55),
+    0 8px 16px rgba(#1f3e64, 0.35);
+  color: #f4fbff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.2s ease, color 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.arcane-button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(#d6ffea, 0.98);
+  box-shadow:
+    inset 0 0 24px rgba(244, 255, 186, 0.28),
+    inset 0 1px 0 rgba(#dffff1, 0.65),
+    inset 0 -2px 0 rgba(#1f3e64, 0.55),
+    0 10px 18px rgba(#1f3e64, 0.42);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.arcane-button:active {
+  transform: translateY(1px);
+  box-shadow:
+    inset 0 1px 0 rgba(#dffff1, 0.26),
+    inset 0 -1px 0 rgba(#1f3e64, 0.66);
+}
+
+.arcane-button__icon {
+  width: 16px;
+  height: 16px;
+  color: #fff;
+  flex-shrink: 0;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.2));
+}
+
+.arcane-glow {
+  position: relative;
+}
+
+.arcane-glow::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: radial-gradient(circle at 20% 20%, rgba($color-brand-green, 0.18), transparent 48%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  animation: runePulse 4s ease-in-out infinite;
+}
+
+@keyframes runePulse {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+.page__muted {
+  color: $color-text-muted;
+}
+
+.page__error {
+  color: $color-danger;
+}
+
+@media (min-width: $breakpoint-md) {
+  .page {
+    padding: $spacing-xl;
+  }
+
+  .page__title {
+    font-size: 1.85rem;
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .page {
+    padding: $spacing-m;
+  }
+
+  .page::before,
+  .page::after {
+    display: none;
+  }
+
+  .arcane-button {
+    min-height: 42px;
+    padding: 8px 12px;
+    font-size: 0.72rem;
+    letter-spacing: 0.03em;
+    gap: 6px;
+  }
+
+  .arcane-button__icon {
+    width: 14px;
+    height: 14px;
+  }
+}

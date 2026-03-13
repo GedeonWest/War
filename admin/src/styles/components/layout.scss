@@ -1,0 +1,87 @@
+@use '../base/variables' as *;
+
+.admin-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-layout__header {
+  display: flex;
+  align-items: center;
+  gap: $spacing-m;
+  padding: $spacing-m;
+  background-color: $color-bg-card;
+  border-bottom: 1px solid $color-border;
+}
+
+.admin-layout__brand {
+  font-weight: 700;
+  color: $color-text;
+}
+
+.admin-layout__link {
+  color: $color-text-muted;
+}
+
+.admin-layout__body {
+  flex: 1;
+  display: flex;
+}
+
+.admin-layout__aside {
+  width: 220px;
+  flex-shrink: 0;
+  padding: $spacing-m;
+  background-color: $color-bg-card;
+  border-right: 1px solid $color-border;
+}
+
+.admin-layout__nav {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.admin-layout__nav-link {
+  padding: $spacing-s $spacing-m;
+  border-radius: $radius-s;
+  color: $color-text;
+
+  &:hover {
+    background-color: $color-bg;
+  }
+}
+
+.admin-layout__nav-link_active {
+  background-color: $color-accent;
+  color: #fff;
+
+  &:hover {
+    background-color: darken($color-accent, 8%);
+    color: #fff;
+  }
+}
+
+.admin-layout__main {
+  flex: 1;
+  padding: $spacing-l;
+  overflow: auto;
+}
+
+@media (max-width: $breakpoint-md) {
+  .admin-layout__body {
+    flex-direction: column;
+  }
+
+  .admin-layout__aside {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid $color-border;
+  }
+
+  .admin-layout__nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,8 @@
+@use 'base/globals';
+@use 'base/variables' as *;
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,79 @@
+@use '../base/variables' as *;
+
+.agents__toolbar {
+  margin-bottom: $spacing-l;
+}
+
+.agents__search {
+  width: 100%;
+  max-width: 560px;
+  padding: 12px 14px;
+  border: 1px solid $color-border;
+  border-radius: $radius-s;
+  font-size: 1rem;
+  color: $color-text;
+  background-color: $color-bg-soft;
+
+  &:focus {
+    outline: none;
+    border-color: rgba($color-brand-blue, 0.8);
+    box-shadow: 0 0 0 3px rgba($color-brand-blue, 0.12);
+  }
+}
+
+.agents__section {
+  margin-bottom: $spacing-xl;
+}
+
+.agents__section-title {
+  margin: 0 0 $spacing-m;
+  font-size: 1.2rem;
+  color: $color-text-muted;
+  font-family: $font-family-display;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-s;
+  padding-bottom: $spacing-s;
+  border-bottom: 1px dashed rgba($color-brand-blue, 0.35);
+}
+
+.agents__section-count {
+  font-style: normal;
+  font-size: 0.75rem;
+  color: $color-brand-blue;
+  border: 1px solid rgba($color-brand-blue, 0.35);
+  background-color: rgba($color-brand-blue, 0.07);
+  padding: 3px 8px;
+  border-radius: $radius-s;
+}
+
+.agents__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: $spacing-m;
+}
+
+.agents__item {
+  margin: 0;
+}
+
+@media (min-width: $breakpoint-md) {
+  .agents__list {
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  }
+}
+
+@media (max-width: $breakpoint-md) {
+  .agents__search {
+    max-width: 100%;
+  }
+
+  .agents__section-title {
+    font-size: 1.02rem;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

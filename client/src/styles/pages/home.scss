@@ -1,0 +1,131 @@
+@use '../base/variables' as *;
+
+.page_home {
+  text-align: left;
+}
+
+.hero-book {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-l;
+  margin-bottom: $spacing-l;
+  padding: $spacing-m;
+  background: linear-gradient(180deg, rgba(#fff, 0.96), rgba(#f8fbff, 0.94));
+  border: 2px solid rgba(150, 117, 48, 0.52);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 236, 186, 0.48),
+    0 10px 24px rgba(34, 62, 97, 0.12);
+  position: relative;
+}
+
+.hero-book__eyebrow {
+  margin: 0 0 $spacing-s;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: $color-text-muted;
+}
+
+.hero-book__title {
+  margin-bottom: $spacing-m;
+}
+
+.hero-book__lead {
+  margin: 0 0 $spacing-m;
+  color: $color-text-muted;
+  max-width: 40ch;
+  line-height: 1.65;
+}
+
+.hero-book__lead::first-letter {
+  font-family: $font-family-display;
+  float: left;
+  font-size: 3.4rem;
+  line-height: 0.86;
+  margin-right: 10px;
+  margin-top: 3px;
+  color: #8e6a2f;
+  text-shadow: 0 2px 0 rgba(255, 229, 158, 0.55);
+}
+
+.hero-book__text {
+  margin: 0;
+  color: $color-text-muted;
+  line-height: 1.7;
+}
+
+.hero-book__right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-book__crest-frame {
+  width: min(100%, 360px);
+  aspect-ratio: 4 / 5;
+  border-radius: 50%;
+  padding: 12px;
+  border: 2px solid rgba(166, 126, 54, 0.58);
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255, 226, 162, 0.3), rgba(116, 82, 28, 0.08)),
+    linear-gradient(rgba(#fbf4e5, 0.84), rgba(#edf4ff, 0.84));
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 239, 196, 0.5),
+    0 8px 18px rgba(34, 62, 97, 0.14);
+}
+
+.hero-book__crest {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.hero-book__status {
+  margin-bottom: $spacing-m;
+}
+
+.home-nav {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-m;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.home-nav__link {
+  display: inline-flex;
+  min-height: 52px;
+  padding: $spacing-m;
+  text-align: left;
+  justify-content: flex-start;
+}
+
+@media (min-width: $breakpoint-md) {
+  .hero-book {
+    grid-template-columns: 1.15fr 0.85fr;
+    align-items: center;
+    padding: $spacing-l;
+  }
+
+  .home-nav {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: $breakpoint-sm) {
+  .hero-book {
+    padding: $spacing-s;
+    gap: $spacing-m;
+  }
+
+  .hero-book__lead::first-letter {
+    font-size: 2.5rem;
+    margin-right: 8px;
+  }
+
+  .hero-book__crest-frame {
+    width: min(82vw, 280px);
+  }
+}

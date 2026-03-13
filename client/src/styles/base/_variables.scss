@@ -1,0 +1,35 @@
+$font-family-base: 'Piazzolla', system-ui, -apple-system, sans-serif;
+$font-family-display: 'Piazzolla', 'Georgia', 'Times New Roman', serif;
+$font-size-base: 16px;
+$line-height-base: 1.5;
+
+$color-brand-blue: #4577bc;
+$color-brand-green: #3da549;
+$color-text: #10233f;
+$color-text-muted: #51627a;
+$color-bg: #edf4ff;
+$color-bg-card: #ffffff;
+$color-bg-soft: #f7fbff;
+$color-border: #d5e2f4;
+$color-accent: $color-brand-blue;
+$color-accent-secondary: $color-brand-green;
+$color-link: $color-brand-blue;
+$color-link-hover: #2d5c9f;
+$color-danger: #c63c3c;
+
+$spacing-xs: 4px;
+$spacing-s: 8px;
+$spacing-m: 16px;
+$spacing-l: 24px;
+$spacing-xl: 32px;
+$spacing-2xl: 48px;
+
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+$radius-s: 2px;
+$radius-m: 4px;
+$radius-l: 6px;
+$shadow-card: 0 10px 30px rgba(39, 78, 126, 0.12);
