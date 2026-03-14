@@ -35,7 +35,16 @@
   "materials": [],
   "maps": [],
   "chronicles": [],
-  "players": [],
+  "players": [
+    {
+      "name": "Тест",
+      "image": "",
+      "about": "Тест",
+      "level": "1",
+      "status": "Действующий",
+      "pdf": "https://cdnb.artstation.com/p/assets/images/images/009/623/419/large/hugh-pindur-pindurski-warforthecrown3-martella-lotheed.jpg?1519996937"
+    }
+  ],
   "resources": [],
   "active": [],
   "agent": [],
