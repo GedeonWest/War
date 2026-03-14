@@ -9,6 +9,26 @@
       "description": "Тестовый персонаж",
       "details": "Тест тест етст",
       "image": ""
+    },
+    {
+      "name": "Тестовый персонаж 2",
+      "role": "Тест",
+      "status": "Тест",
+      "attitude": "Нейтрал",
+      "shortDescription": "Очень тестовый персонаж",
+      "description": "Самый тестовый",
+      "details": "много теста",
+      "image": ""
+    },
+    {
+      "name": "Новый тестовый перс",
+      "role": "",
+      "status": "",
+      "attitude": "",
+      "shortDescription": "",
+      "description": "",
+      "details": "",
+      "image": ""
     }
   ],
   "artifacts": [],
