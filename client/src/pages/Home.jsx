@@ -1,12 +1,44 @@
+import { useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Icon } from '@iconify/react';
 import { useDataStore } from '../store/useDataStore';
 import '../styles/pages/home.scss';
 
 export default function Home() {
-  const symbolUrl = `${import.meta.env.BASE_URL}assets/images/Taldor_symbol.webp`;
+  const baseUrl = import.meta.env.BASE_URL;
+  const symbolUrl = `${baseUrl}assets/images/Taldor_symbol.webp`;
+  const logoUrl = `${baseUrl}assets/images/logo.png`;
+  const wallUrl = `${baseUrl}assets/images/wall.jpg`;
+  const fetchData = useDataStore((s) => s.fetchData);
+  const raw = useDataStore((s) => s.raw);
   const loading = useDataStore((s) => s.loading);
   const error = useDataStore((s) => s.error);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  const featuredCharacter = useMemo(() => {
+    const source = raw?.npcs?.[0] || raw?.active?.[0] || raw?.agent?.[0] || null;
+    return {
+      name: source?.name || 'Лорд-наблюдатель Эйрен Восс',
+      role: source?.role || source?.status || 'Связной Имперского Двора',
+      text: source?.description || source?.shortDescription
+        || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer feugiat vulputate mi, in pulvinar sem posuere in. Cras porttitor sem vel dolor volutpat vulputate.',
+      image: source?.imgref || source?.image || logoUrl,
+    };
+  }, [raw, logoUrl]);
+
+  const featuredMap = useMemo(() => {
+    const source = raw?.maps?.[0] || null;
+    return {
+      title: source?.title || source?.name || 'Карта северных рубежей',
+      location: source?.location || 'Прибрежные земли Талдора',
+      text: source?.description || source?.shortDescription
+        || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non pulvinar enim. Fusce fermentum, libero sit amet luctus bibendum, lorem dui tincidunt tortor.',
+      image: source?.imgref || source?.image || wallUrl,
+    };
+  }, [raw, wallUrl]);
 
   return (
     <div className="page page_home">
@@ -57,6 +89,61 @@ export default function Home() {
           Карты
         </Link>
       </nav>
+
+      <section className="home-showcase">
+        <article className="home-showcase__panel home-showcase__panel_character">
+          <header className="home-showcase__header">
+            <Icon icon="game-icons:spartan-helmet" className="home-showcase__icon" />
+            <h2>Главный персонаж</h2>
+          </header>
+          <div className="home-showcase__media">
+            <img src={featuredCharacter.image} alt={featuredCharacter.name} loading="lazy" />
+          </div>
+          <h3>{featuredCharacter.name}</h3>
+          <p className="home-showcase__meta">{featuredCharacter.role}</p>
+          <p>{featuredCharacter.text}</p>
+        </article>
+
+        <article className="home-showcase__panel home-showcase__panel_map">
+          <header className="home-showcase__header">
+            <Icon icon="game-icons:treasure-map" className="home-showcase__icon" />
+            <h2>Актуальная карта</h2>
+          </header>
+          <div className="home-showcase__media">
+            <img src={featuredMap.image} alt={featuredMap.title} loading="lazy" />
+          </div>
+          <h3>{featuredMap.title}</h3>
+          <p className="home-showcase__meta">{featuredMap.location}</p>
+          <p>{featuredMap.text}</p>
+        </article>
+      </section>
+
+      <section className="home-ornaments">
+        <article className="home-ornaments__item">
+          <Icon icon="game-icons:ornate-cross" className="home-ornaments__icon" />
+          <h3>Архив миссий</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc hendrerit, lorem id
+            faucibus malesuada, urna erat convallis dui, non scelerisque nunc lacus non turpis.
+          </p>
+        </article>
+        <article className="home-ornaments__item">
+          <Icon icon="game-icons:castle" className="home-ornaments__icon" />
+          <h3>Политический фон</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae sapien vel
+            turpis gravida dictum. Cras eget tempor lorem, et feugiat eros.
+          </p>
+        </article>
+        <article className="home-ornaments__item">
+          <Icon icon="game-icons:scroll-unfurled" className="home-ornaments__icon" />
+          <h3>Летопись отряда</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac elementum
+            sem. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia.
+          </p>
+        </article>
+      </section>
     </div>
   );
 }

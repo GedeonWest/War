@@ -28,12 +28,12 @@ export default function Dashboard() {
           Данные загружены. Используйте простые разделы слева: НПС, Артефакты, Материалы и Карты.
         </p>
       )}
-      <p>
-        <Link to="/npcs">НПС</Link> ·{' '}
-        <Link to="/artifacts">Артефакты</Link> ·{' '}
-        <Link to="/materials">Материалы</Link> ·{' '}
-        <Link to="/maps">Карты</Link>
-      </p>
+      <div className="dashboard-links">
+        <Link to="/npcs" className="dashboard-links__item">НПС</Link>
+        <Link to="/artifacts" className="dashboard-links__item">Артефакты</Link>
+        <Link to="/materials" className="dashboard-links__item">Материалы</Link>
+        <Link to="/maps" className="dashboard-links__item">Карты</Link>
+      </div>
     </div>
   );
 }

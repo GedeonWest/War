@@ -1,18 +1,105 @@
 @use 'base/variables' as *;
 
+.page {
+  padding: $spacing-m;
+  border: 1px solid rgba(69, 119, 188, 0.18);
+  border-radius: $radius-s;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(246, 250, 255, 0.95));
+  box-shadow: 0 14px 28px rgba(31, 56, 88, 0.08);
+}
+
 .page__title {
   margin: 0 0 1rem;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
+  color: #24456a;
 }
 
 .page__muted {
   color: $color-text-muted;
-  margin: 0;
+  margin: 0 0 $spacing-s;
 }
 
 .page__error {
-  color: #c00;
-  margin: 0;
+  color: #b92a2a;
+  margin: 0 0 $spacing-s;
+}
+
+.settings {
+  margin-bottom: $spacing-m;
+}
+
+.settings__toggle {
+  border: 1px solid rgba(69, 119, 188, 0.34);
+  border-radius: $radius-s;
+  background: rgba(69, 119, 188, 0.08);
+  color: #24456a;
+  padding: 10px 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.settings__toggle:hover {
+  background: rgba(69, 119, 188, 0.14);
+}
+
+.settings__panel {
+  margin-top: $spacing-s;
+  max-width: 520px;
+  padding: $spacing-m;
+  border: 1px solid rgba(69, 119, 188, 0.2);
+  border-radius: $radius-s;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(246, 250, 255, 0.96));
+}
+
+.settings__field {
+  display: block;
+  margin-bottom: $spacing-s;
+  color: $color-text-muted;
+  font-size: 0.92rem;
+}
+
+.settings__input {
+  display: block;
+  width: 100%;
+  margin-top: 4px;
+  padding: 10px 12px;
+  border: 1px solid $color-border;
+  border-radius: $radius-s;
+  background: #fff;
+}
+
+.settings__save {
+  border: 1px solid transparent;
+  border-radius: $radius-s;
+  background: linear-gradient(135deg, $color-primary, $color-secondary);
+  color: #fff;
+  padding: 10px 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.settings__save:hover {
+  background: linear-gradient(135deg, #3d6ead, #35913f);
+}
+
+.dashboard-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-s;
+}
+
+.dashboard-links__item {
+  padding: 8px 12px;
+  border: 1px solid rgba(69, 119, 188, 0.2);
+  border-radius: 999px;
+  background: #f7fbff;
+  color: #1f436a;
+  font-weight: 600;
+}
+
+.dashboard-links__item:hover {
+  text-decoration: none;
+  background: rgba(69, 119, 188, 0.1);
 }
 
 .admin-edit__toolbar {
@@ -22,20 +109,138 @@
   margin: $spacing-m 0;
 }
 
-.admin-edit__list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-direction: column;
-  gap: $spacing-m;
+.admin-edit__toolbar button {
+  border: 1px solid transparent;
+  border-radius: $radius-s;
+  background: linear-gradient(135deg, $color-primary, #5e8fd0);
+  color: #fff;
+  padding: 10px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 16px rgba(50, 86, 132, 0.2);
 }
 
-.admin-edit__item {
-  background: #f7f7f7;
+.admin-edit__toolbar button:hover {
+  background: linear-gradient(135deg, #3d6ead, #4f7fc0);
+}
+
+.admin-edit__toolbar button:last-child {
+  background: linear-gradient(135deg, $color-secondary, #4bb457);
+}
+
+.admin-edit__toolbar button:last-child:hover {
+  background: linear-gradient(135deg, #35913f, #42a64d);
+}
+
+.admin-edit__filters {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-s;
+  margin-bottom: $spacing-m;
+}
+
+.admin-edit__filters input,
+.admin-edit__filters select {
+  width: 100%;
+  padding: 10px 12px;
   border: 1px solid $color-border;
   border-radius: $radius-s;
+  background: #fdfefe;
+}
+
+.admin-edit__filters input:focus,
+.admin-edit__filters select:focus,
+.admin-edit__field input:focus,
+.admin-edit__field textarea:focus,
+.settings__input:focus {
+  border-color: rgba(69, 119, 188, 0.75);
+  outline: 2px solid rgba(69, 119, 188, 0.2);
+  outline-offset: 0;
+}
+
+.admin-edit__table-wrap {
+  overflow-x: auto;
+  border: 1px solid rgba(69, 119, 188, 0.22);
+  border-radius: $radius-s;
+  background: #fff;
+  box-shadow: 0 12px 22px rgba(36, 63, 94, 0.09);
+}
+
+.admin-table {
+  width: 100%;
+  min-width: 720px;
+  border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 11px 12px;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(69, 119, 188, 0.12);
+}
+
+.admin-table th {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #4f6278;
+  background: linear-gradient(180deg, #f3f8ff, #edf4fd);
+}
+
+.admin-table__name-btn {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  color: $color-primary;
+  cursor: pointer;
+  text-align: left;
+  font-weight: 600;
+}
+
+.admin-table__name-btn:hover {
+  text-decoration: underline;
+}
+
+.admin-table__row_active {
+  background: rgba($color-primary, 0.1);
+}
+
+.admin-table__actions {
+  display: flex;
+  gap: 6px;
+}
+
+.admin-table__actions button {
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(69, 119, 188, 0.3);
+  border-radius: $radius-s;
+  background: #fff;
+  color: #2f537e;
+  cursor: pointer;
+}
+
+.admin-table__actions button:hover {
+  background: rgba(69, 119, 188, 0.1);
+}
+
+.admin-edit__panel {
+  margin-top: $spacing-m;
   padding: $spacing-m;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(247, 252, 255, 0.96));
+  border: 1px solid rgba(69, 119, 188, 0.22);
+  border-radius: $radius-s;
+  box-shadow: 0 10px 20px rgba(31, 56, 88, 0.1);
+}
+
+.admin-edit__panel h3 {
+  margin: 0;
+  color: #24456a;
+}
+
+.admin-edit__details-body {
+  margin-top: $spacing-s;
   display: flex;
   flex-direction: column;
   gap: $spacing-s;
@@ -53,9 +258,7 @@
 }
 
 .admin-edit__field input,
-.admin-edit__field textarea,
-.admin-edit__toolbar button,
-.admin-edit__item > button {
+.admin-edit__field textarea {
   width: 100%;
   padding: 10px 12px;
   border: 1px solid $color-border;
@@ -63,8 +266,12 @@
   background: #fff;
 }
 
-.admin-edit__toolbar button,
-.admin-edit__item > button {
-  width: auto;
-  cursor: pointer;
+@media (min-width: $breakpoint-md) {
+  .page {
+    padding: $spacing-l;
+  }
+
+  .admin-edit__filters {
+    grid-template-columns: 1fr 220px;
+  }
 }

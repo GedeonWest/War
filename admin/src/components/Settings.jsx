@@ -29,43 +29,43 @@ export default function Settings() {
   };
 
   return (
-    <div style={{ marginBottom: 16 }}>
-      <button type="button" onClick={() => setOpen((v) => !v)}>
+    <section className="settings">
+      <button type="button" className="settings__toggle" onClick={() => setOpen((v) => !v)}>
         {open ? 'Скрыть настройки GitHub' : 'Настройки GitHub (токен, репозиторий)'}
       </button>
       {open && (
-        <div style={{ marginTop: 8, padding: 16, background: '#f0f0f0', borderRadius: 4, maxWidth: 400 }}>
-          <label style={{ display: 'block', marginBottom: 8 }}>
+        <div className="settings__panel">
+          <label className="settings__field">
             Владелец репо (owner):
             <input
               value={owner}
               onChange={(e) => setOwner(e.target.value)}
               placeholder="username"
-              style={{ display: 'block', width: '100%', marginTop: 4 }}
+              className="settings__input"
             />
           </label>
-          <label style={{ display: 'block', marginBottom: 8 }}>
+          <label className="settings__field">
             Репозиторий:
             <input
               value={repo}
               onChange={(e) => setRepo(e.target.value)}
               placeholder="War"
-              style={{ display: 'block', width: '100%', marginTop: 4 }}
+              className="settings__input"
             />
           </label>
-          <label style={{ display: 'block', marginBottom: 8 }}>
+          <label className="settings__field">
             Personal Access Token (с правом repo):
             <input
               type="password"
               value={token}
               onChange={(e) => setToken(e.target.value)}
               placeholder="ghp_..."
-              style={{ display: 'block', width: '100%', marginTop: 4 }}
+              className="settings__input"
             />
           </label>
-          <button type="button" onClick={save}>Сохранить локально</button>
+          <button type="button" className="settings__save" onClick={save}>Сохранить локально</button>
         </div>
       )}
-    </div>
+    </section>
   );
 }
