@@ -1,4 +1,20 @@
 {
+  "npcs": [
+    {
+      "name": "Тестовый персонаж",
+      "role": "Тестов",
+      "status": "Жив",
+      "attitude": "Нейтрал",
+      "shortDescription": "Тестовый персонаж",
+      "description": "Тестовый персонаж",
+      "details": "Тест тест етст",
+      "image": ""
+    }
+  ],
+  "artifacts": [],
+  "materials": [],
+  "maps": [],
+  "resources": [],
   "active": [],
   "agent": [],
   "crown": [],
@@ -8,7 +24,5 @@
   "legacy": [],
   "prison": [],
   "secrown": [],
-  "target": [],
-  "resources": [],
-  "maps": []
+  "target": []
 }
