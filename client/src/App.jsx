@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import ErrorBoundary from './components/ErrorBoundary';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import Agents from './pages/Agents';
@@ -12,8 +13,9 @@ import Initiative from './pages/Initiative';
 
 function App() {
   return (
-    <Layout>
-      <Routes>
+    <ErrorBoundary>
+      <Layout>
+        <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/agents" element={<Agents />} />
         <Route path="/dossiers" element={<Dossiers />} />
@@ -23,8 +25,9 @@ function App() {
         <Route path="/chronicles" element={<Chronicles />} />
         <Route path="/players" element={<Players />} />
         <Route path="/initiative" element={<Initiative />} />
-      </Routes>
-    </Layout>
+        </Routes>
+      </Layout>
+    </ErrorBoundary>
   );
 }
 

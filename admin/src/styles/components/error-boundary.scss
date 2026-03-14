@@ -1,0 +1,65 @@
+@use '../base/variables' as *;
+
+.admin-error-boundary {
+  min-height: 60vh;
+  display: grid;
+  place-items: center;
+  padding: $spacing-l;
+}
+
+.admin-error-boundary__content {
+  max-width: 480px;
+  text-align: center;
+  padding: $spacing-l;
+  border: 2px solid rgba(#b92a2a, 0.4);
+  border-radius: $radius-s;
+  background: linear-gradient(180deg, #fff, #fff8f8);
+  box-shadow: 0 14px 28px rgba(31, 56, 88, 0.08);
+}
+
+.admin-error-boundary__title {
+  margin: 0 0 $spacing-s;
+  color: #24456a;
+  font-size: 1.35rem;
+}
+
+.admin-error-boundary__text {
+  margin: 0 0 $spacing-m;
+  color: $color-text-muted;
+  line-height: 1.5;
+}
+
+.admin-error-boundary__detail {
+  margin: 0 0 $spacing-m;
+  padding: $spacing-s;
+  text-align: left;
+  font-size: 0.78rem;
+  color: $color-text-muted;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: $radius-s;
+  overflow-x: auto;
+  max-height: 120px;
+  overflow-y: auto;
+}
+
+.admin-error-boundary__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-s;
+  justify-content: center;
+}
+
+.admin-error-boundary__btn {
+  padding: 10px 14px;
+  border-radius: $radius-s;
+  border: 1px solid rgba($color-primary, 0.3);
+  background: linear-gradient(135deg, $color-primary, #5e8fd0);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.admin-error-boundary__btn:hover {
+  background: linear-gradient(135deg, #3d6ead, #4f7fc0);
+}

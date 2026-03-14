@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import ErrorBoundary from './components/ErrorBoundary';
 import Layout from './components/Layout';
 import Dashboard from './pages/Dashboard';
 import NpcsEdit from './pages/NpcsEdit';
@@ -11,16 +12,18 @@ import './styles/app.scss';
 
 export default function App() {
   return (
-    <Layout>
-      <Routes>
-        <Route path="/" element={<Dashboard />} />
+    <ErrorBoundary>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Dashboard />} />
         <Route path="/npcs" element={<NpcsEdit />} />
         <Route path="/artifacts" element={<ArtifactsEdit />} />
         <Route path="/materials" element={<MaterialsEdit />} />
         <Route path="/maps" element={<MapsSimpleEdit />} />
         <Route path="/chronicles" element={<ChroniclesEdit />} />
         <Route path="/players" element={<PlayersEdit />} />
-      </Routes>
-    </Layout>
+        </Routes>
+      </Layout>
+    </ErrorBoundary>
   );
 }
