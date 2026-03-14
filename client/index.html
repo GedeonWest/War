@@ -9,7 +9,9 @@
         var redirect = window.location.search.match(/[?&]p=([^&]+)/);
         if (redirect) {
           var path = decodeURIComponent(redirect[1]).replace(/~and~/g, '&');
-          window.history.replaceState(null, null, path + window.location.hash);
+          var base = window.location.pathname.replace(/\/+$/, '');
+          var normalizedPath = path.charAt(0) === '/' ? path : '/' + path;
+          window.history.replaceState(null, null, base + normalizedPath + window.location.hash);
         }
       })();
     </script>

@@ -4,6 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Админка — War for the Crown</title>
+    <script>
+      (function () {
+        var redirect = window.location.search.match(/[?&]p=([^&]+)/);
+        if (redirect) {
+          var path = decodeURIComponent(redirect[1]).replace(/~and~/g, '&');
+          var base = window.location.pathname.replace(/\/+$/, '');
+          var normalizedPath = path.charAt(0) === '/' ? path : '/' + path;
+          window.history.replaceState(null, null, base + normalizedPath + window.location.hash);
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

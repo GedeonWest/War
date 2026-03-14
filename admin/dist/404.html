@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Redirecting…</title>
+    <script>
+      (function () {
+        var l = window.location;
+        var segmentCount = 2;
+        var basePath = l.pathname
+          .split("/")
+          .slice(0, 1 + segmentCount)
+          .join("/");
+        var restPath = l.pathname
+          .slice(basePath.length)
+          .replace(/^\/+/, "");
+        var query = l.search ? l.search.replace(/^\?/, "&") : "";
+        var redirect = basePath + "/?p=/" + restPath.replace(/&/g, "~and~") + query + l.hash;
+        l.replace(redirect);
+      })();
+    </script>
+  </head>
+  <body></body>
+</html>
