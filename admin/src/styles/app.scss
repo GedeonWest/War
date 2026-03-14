@@ -257,6 +257,10 @@
   color: $color-text-muted;
 }
 
+.admin-edit__required {
+  color: #b92a2a;
+}
+
 .admin-edit__field input,
 .admin-edit__field textarea {
   width: 100%;
@@ -264,6 +268,115 @@
   border: 1px solid $color-border;
   border-radius: $radius-s;
   background: #fff;
+}
+
+.admin-edit__field_invalid input,
+.admin-edit__field_invalid textarea {
+  border-color: rgba(185, 42, 42, 0.68);
+  outline: 2px solid rgba(185, 42, 42, 0.12);
+}
+
+.admin-edit__field-error {
+  color: #b92a2a;
+  font-size: 0.8rem;
+}
+
+.admin-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: $spacing-m;
+}
+
+.admin-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(15, 28, 46, 0.56);
+}
+
+.admin-modal__dialog {
+  position: relative;
+  width: min(760px, 100%);
+  max-height: min(88vh, 920px);
+  border: 1px solid rgba(69, 119, 188, 0.26);
+  border-radius: $radius-s;
+  background: linear-gradient(180deg, #ffffff, #f6faff);
+  box-shadow: 0 24px 44px rgba(22, 43, 71, 0.35);
+  overflow: hidden;
+}
+
+.admin-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-s;
+  padding: $spacing-m;
+  border-bottom: 1px solid rgba(69, 119, 188, 0.2);
+}
+
+.admin-modal__title {
+  margin: 0;
+  color: #24456a;
+  font-size: 1.1rem;
+}
+
+.admin-modal__close {
+  width: 34px;
+  height: 34px;
+  border: 1px solid rgba(69, 119, 188, 0.28);
+  border-radius: $radius-s;
+  background: #fff;
+  color: #2d527e;
+  cursor: pointer;
+}
+
+.admin-modal__close:hover {
+  background: rgba(69, 119, 188, 0.1);
+}
+
+.admin-modal__body {
+  overflow: auto;
+  max-height: calc(88vh - 150px);
+  padding: 0 $spacing-m $spacing-m;
+}
+
+.admin-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: $spacing-s;
+  padding: $spacing-m;
+  border-top: 1px solid rgba(69, 119, 188, 0.2);
+  background: rgba(247, 251, 255, 0.96);
+}
+
+.admin-modal__button {
+  padding: 10px 14px;
+  border-radius: $radius-s;
+  border: 1px solid transparent;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-modal__button_cancel {
+  background: #fff;
+  border-color: rgba(69, 119, 188, 0.28);
+  color: #27486f;
+}
+
+.admin-modal__button_cancel:hover {
+  background: rgba(69, 119, 188, 0.08);
+}
+
+.admin-modal__button_save {
+  color: #fff;
+  background: linear-gradient(135deg, $color-primary, $color-secondary);
+}
+
+.admin-modal__button_save:hover {
+  background: linear-gradient(135deg, #3d6ead, #35913f);
 }
 
 @media (min-width: $breakpoint-md) {

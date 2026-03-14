@@ -17,7 +17,7 @@ export default function NpcsEdit() {
         image: '',
       }}
       fields={[
-        { name: 'name', label: 'Имя', type: 'text' },
+        { name: 'name', label: 'Имя', type: 'text', required: true },
         { name: 'role', label: 'Роль', type: 'text' },
         { name: 'status', label: 'Статус', type: 'text' },
         { name: 'attitude', label: 'Отношение', type: 'text' },

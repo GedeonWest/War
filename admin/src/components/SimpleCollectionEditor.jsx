@@ -15,6 +15,33 @@ function getCardDescription(item) {
   return item.shortDescription || item.description || item.details || item.notes || '';
 }
 
+function getDraftErrors(fields, draft) {
+  const next = {};
+
+  fields.forEach((field) => {
+    const value = draft[field.name];
+    const normalized = typeof value === 'string' ? value.trim() : value;
+
+    if (field.required && !normalized) {
+      next[field.name] = field.requiredMessage || `Поле "${field.label}" обязательно.`;
+      return;
+    }
+
+    if ((field.type === 'url' || field.type === 'image') && normalized) {
+      try {
+        // URL constructor handles robust validation for http(s) and absolute links.
+        // We store only absolute URLs in the JSON data.
+        // eslint-disable-next-line no-new
+        new URL(normalized);
+      } catch {
+        next[field.name] = `Укажите корректный URL для поля "${field.label}".`;
+      }
+    }
+  });
+
+  return next;
+}
+
 export default function SimpleCollectionEditor({
   title,
   description,
@@ -30,7 +57,10 @@ export default function SimpleCollectionEditor({
   const error = useAdminStore((s) => s.error);
   const [query, setQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
-  const [editIndex, setEditIndex] = useState(null);
+  const [modalMode, setModalMode] = useState(null);
+  const [modalIndex, setModalIndex] = useState(null);
+  const [draft, setDraft] = useState({ ...emptyItem });
+  const [draftErrors, setDraftErrors] = useState({});
 
   const list = (raw && raw[collectionKey]) || [];
 
@@ -77,25 +107,63 @@ export default function SimpleCollectionEditor({
     setRaw(merged);
   };
 
-  const add = () => {
-    const next = [...list, { ...emptyItem }];
-    setList(next);
-    setEditIndex(next.length - 1);
+  const openCreateModal = () => {
+    setDraft({ ...emptyItem });
+    setDraftErrors({});
+    setModalMode('create');
+    setModalIndex(null);
   };
 
-  const update = (index, field, value) => {
-    const next = [...list];
-    next[index] = { ...next[index], [field]: value };
-    setList(next);
+  const openEditModal = (index) => {
+    const source = list[index] || {};
+    setDraft({ ...emptyItem, ...source });
+    setDraftErrors({});
+    setModalMode('edit');
+    setModalIndex(index);
+  };
+
+  const closeModal = () => {
+    setModalMode(null);
+    setModalIndex(null);
+    setDraft({ ...emptyItem });
+    setDraftErrors({});
   };
 
   const remove = (index) => {
     setList(list.filter((_, i) => i !== index));
-    setEditIndex((current) => {
-      if (current === null) return null;
-      if (current === index) return null;
-      return current > index ? current - 1 : current;
+    if (modalMode === 'edit' && modalIndex === index) {
+      closeModal();
+    }
+  };
+
+  const updateDraft = (field, value) => {
+    setDraft((current) => ({ ...current, [field]: value }));
+    setDraftErrors((current) => {
+      if (!current[field]) return current;
+      const next = { ...current };
+      delete next[field];
+      return next;
     });
+  };
+
+  const saveModal = () => {
+    const errors = getDraftErrors(fields, draft);
+    if (Object.keys(errors).length > 0) {
+      setDraftErrors(errors);
+      return;
+    }
+
+    if (modalMode === 'create') {
+      setList([...list, draft]);
+      closeModal();
+      return;
+    }
+    if (modalMode === 'edit' && modalIndex !== null) {
+      const next = [...list];
+      next[modalIndex] = { ...draft };
+      setList(next);
+      closeModal();
+    }
   };
 
   const handleSaveToGitHub = async () => {
@@ -128,7 +196,7 @@ export default function SimpleCollectionEditor({
       {error && <p className="page__error">Не удалось загрузить файл данных, можно продолжить с пустой формой.</p>}
 
       <div className="admin-edit__toolbar">
-        <button type="button" onClick={add}>Добавить</button>
+        <button type="button" onClick={openCreateModal}>Создать запись</button>
         <button type="button" onClick={handleSaveToGitHub}>Сохранить в GitHub</button>
       </div>
 
@@ -160,12 +228,12 @@ export default function SimpleCollectionEditor({
           </thead>
           <tbody>
             {filteredList.map(({ item, index }) => (
-              <tr key={index} className={editIndex === index ? 'admin-table__row_active' : ''}>
+              <tr key={index} className={modalMode === 'edit' && modalIndex === index ? 'admin-table__row_active' : ''}>
                 <td>
                   <button
                     type="button"
                     className="admin-table__name-btn"
-                    onClick={() => setEditIndex(index)}
+                    onClick={() => openEditModal(index)}
                   >
                     {getCardTitle(item)}
                   </button>
@@ -174,7 +242,7 @@ export default function SimpleCollectionEditor({
                 <td>{item.status || item.rarity || '—'}</td>
                 <td>{getCardDescription(item) || '—'}</td>
                 <td className="admin-table__actions">
-                  <button type="button" onClick={() => setEditIndex(index)} aria-label="Редактировать">
+                  <button type="button" onClick={() => openEditModal(index)} aria-label="Редактировать">
                     ✎
                   </button>
                   <button type="button" onClick={() => remove(index)} aria-label="Удалить">
@@ -192,30 +260,63 @@ export default function SimpleCollectionEditor({
         </table>
       </div>
 
-      {editIndex !== null && list[editIndex] && (
-        <section className="admin-edit__panel">
-          <h3>Редактирование: {getCardTitle(list[editIndex])}</h3>
-          <div className="admin-edit__details-body">
-            {fields.map((field) => (
-              <label key={field.name} className="admin-edit__field">
-                <span className="admin-edit__label">{field.label}</span>
-                {field.type === 'textarea' ? (
-                  <textarea
-                    rows={field.rows || 3}
-                    value={list[editIndex][field.name] || ''}
-                    onChange={(e) => update(editIndex, field.name, e.target.value)}
-                  />
-                ) : (
-                  <input
-                    type={field.type || 'text'}
-                    value={list[editIndex][field.name] || ''}
-                    onChange={(e) => update(editIndex, field.name, e.target.value)}
-                  />
-                )}
-              </label>
-            ))}
+      {modalMode && (
+        <div className="admin-modal" role="dialog" aria-modal="true" aria-label="Редактирование сущности">
+          <button type="button" className="admin-modal__backdrop" onClick={closeModal} aria-label="Закрыть модалку" />
+          <div className="admin-modal__dialog">
+            <div className="admin-modal__header">
+              <h3 className="admin-modal__title">
+                {modalMode === 'create' ? 'Создание записи' : `Редактирование: ${getCardTitle(draft)}`}
+              </h3>
+              <button type="button" className="admin-modal__close" onClick={closeModal} aria-label="Закрыть">
+                ✕
+              </button>
+            </div>
+
+            <div className="admin-modal__body">
+              <div className="admin-edit__details-body">
+                {fields.map((field) => (
+                  <label
+                    key={field.name}
+                    className={`admin-edit__field ${draftErrors[field.name] ? 'admin-edit__field_invalid' : ''}`}
+                  >
+                    <span className="admin-edit__label">
+                      {field.label}
+                      {field.required && <span className="admin-edit__required"> *</span>}
+                    </span>
+                    {field.type === 'textarea' ? (
+                      <textarea
+                        rows={field.rows || 3}
+                        value={draft[field.name] || ''}
+                        aria-invalid={Boolean(draftErrors[field.name])}
+                        onChange={(e) => updateDraft(field.name, e.target.value)}
+                      />
+                    ) : (
+                      <input
+                        type={field.type || 'text'}
+                        value={draft[field.name] || ''}
+                        aria-invalid={Boolean(draftErrors[field.name])}
+                        onChange={(e) => updateDraft(field.name, e.target.value)}
+                      />
+                    )}
+                    {draftErrors[field.name] && (
+                      <span className="admin-edit__field-error">{draftErrors[field.name]}</span>
+                    )}
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <div className="admin-modal__actions">
+              <button type="button" className="admin-modal__button admin-modal__button_cancel" onClick={closeModal}>
+                Отмена
+              </button>
+              <button type="button" className="admin-modal__button admin-modal__button_save" onClick={saveModal}>
+                Сохранить
+              </button>
+            </div>
           </div>
-        </section>
+        </div>
       )}
     </div>
   );

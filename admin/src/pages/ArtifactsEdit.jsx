@@ -19,7 +19,7 @@ export default function ArtifactsEdit() {
         image: '',
       }}
       fields={[
-        { name: 'name', label: 'Название', type: 'text' },
+        { name: 'name', label: 'Название', type: 'text', required: true },
         { name: 'type', label: 'Тип', type: 'text' },
         { name: 'rarity', label: 'Редкость', type: 'text' },
         { name: 'role', label: 'Роль', type: 'text' },

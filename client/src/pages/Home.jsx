@@ -1,7 +1,4 @@
-import { useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Icon } from '@iconify/react';
-import { useDataStore } from '../store/useDataStore';
 import '../styles/pages/home.scss';
 
 export default function Home() {
@@ -9,138 +6,110 @@ export default function Home() {
   const symbolUrl = `${baseUrl}assets/images/Taldor_symbol.webp`;
   const logoUrl = `${baseUrl}assets/images/logo.png`;
   const wallUrl = `${baseUrl}assets/images/wall.jpg`;
-  const fetchData = useDataStore((s) => s.fetchData);
-  const raw = useDataStore((s) => s.raw);
-  const loading = useDataStore((s) => s.loading);
-  const error = useDataStore((s) => s.error);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
-
-  const featuredCharacter = useMemo(() => {
-    const source = raw?.npcs?.[0] || raw?.active?.[0] || raw?.agent?.[0] || null;
-    return {
-      name: source?.name || 'Лорд-наблюдатель Эйрен Восс',
-      role: source?.role || source?.status || 'Связной Имперского Двора',
-      text: source?.description || source?.shortDescription
-        || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer feugiat vulputate mi, in pulvinar sem posuere in. Cras porttitor sem vel dolor volutpat vulputate.',
-      image: source?.imgref || source?.image || logoUrl,
-    };
-  }, [raw, logoUrl]);
-
-  const featuredMap = useMemo(() => {
-    const source = raw?.maps?.[0] || null;
-    return {
-      title: source?.title || source?.name || 'Карта северных рубежей',
-      location: source?.location || 'Прибрежные земли Талдора',
-      text: source?.description || source?.shortDescription
-        || 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non pulvinar enim. Fusce fermentum, libero sit amet luctus bibendum, lorem dui tincidunt tortor.',
-      image: source?.imgref || source?.image || wallUrl,
-    };
-  }, [raw, wallUrl]);
 
   return (
     <div className="page page_home">
-      <section className="hero-book">
-        <div className="hero-book__left">
-          <p className="hero-book__eyebrow">Хроники кампании</p>
-          <h1 className="page__title hero-book__title">War for the Crown</h1>
-          <p className="hero-book__lead">
-            Справочник по кампании Pathfinder 1e: агенты, досье, погибшие, ресурсы и карты.
+      <section className="home-banner">
+        <img src={wallUrl} alt="" className="home-banner__bg" />
+        <div className="home-banner__overlay" />
+        <div className="home-banner__content">
+          <p className="home-banner__eyebrow">Pathfinder 1e campaign journal</p>
+          <h1 className="home-banner__title">War for the Crown</h1>
+          <p className="home-banner__lead">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae sem non est
+            cursus tincidunt. Sed in mauris eu nisi bibendum volutpat vitae et neque.
           </p>
-          <p className="hero-book__text">
-            В хрониках Талдора каждая встреча оставляет след: имена союзников и врагов, тайные
-            досье, утраченные души и ключевые ресурсы экспедиции. Этот свод страниц помогает
-            держать нить повествования и видеть всю кампанию как единую летопись.
-          </p>
-        </div>
-        <div className="hero-book__right">
-          <div className="hero-book__crest-frame">
-            <img src={symbolUrl} alt="Символ Талдора" className="hero-book__crest" />
-          </div>
+          <nav className="home-banner__nav">
+            <Link to="/agents" className="arcane-button">Агенты</Link>
+            <Link to="/dossiers" className="arcane-button">Досье</Link>
+            <Link to="/deceased" className="arcane-button">Погибшие</Link>
+            <Link to="/resources" className="arcane-button">Ресурсы</Link>
+            <Link to="/maps" className="arcane-button">Карты</Link>
+          </nav>
         </div>
       </section>
 
-      <div className="hero-book__status">
-        {loading && <p className="page__muted">Загрузка данных…</p>}
-        {error && <p className="page__error">Ошибка: {error}</p>}
-      </div>
-
-      <nav className="home-nav">
-        <Link to="/agents" className="home-nav__link arcane-button">
-          <Icon icon="game-icons:broadsword" className="arcane-button__icon" />
-          Агенты
-        </Link>
-        <Link to="/dossiers" className="home-nav__link arcane-button">
-          <Icon icon="game-icons:crown" className="arcane-button__icon" />
-          Досье
-        </Link>
-        <Link to="/deceased" className="home-nav__link arcane-button">
-          <Icon icon="game-icons:checked-shield" className="arcane-button__icon" />
-          Погибшие
-        </Link>
-        <Link to="/resources" className="home-nav__link arcane-button">
-          <Icon icon="game-icons:scroll-unfurled" className="arcane-button__icon" />
-          Ресурсы
-        </Link>
-        <Link to="/maps" className="home-nav__link arcane-button">
-          <Icon icon="game-icons:treasure-map" className="arcane-button__icon" />
-          Карты
-        </Link>
-      </nav>
-
-      <section className="home-showcase">
-        <article className="home-showcase__panel home-showcase__panel_character">
-          <header className="home-showcase__header">
-            <Icon icon="game-icons:spartan-helmet" className="home-showcase__icon" />
-            <h2>Главный персонаж</h2>
-          </header>
-          <div className="home-showcase__media">
-            <img src={featuredCharacter.image} alt={featuredCharacter.name} loading="lazy" />
-          </div>
-          <h3>{featuredCharacter.name}</h3>
-          <p className="home-showcase__meta">{featuredCharacter.role}</p>
-          <p>{featuredCharacter.text}</p>
-        </article>
-
-        <article className="home-showcase__panel home-showcase__panel_map">
-          <header className="home-showcase__header">
-            <Icon icon="game-icons:treasure-map" className="home-showcase__icon" />
-            <h2>Актуальная карта</h2>
-          </header>
-          <div className="home-showcase__media">
-            <img src={featuredMap.image} alt={featuredMap.title} loading="lazy" />
-          </div>
-          <h3>{featuredMap.title}</h3>
-          <p className="home-showcase__meta">{featuredMap.location}</p>
-          <p>{featuredMap.text}</p>
+      <section className="home-story">
+        <figure className="home-story__media">
+          <img src={logoUrl} alt="Герб экспедиции" loading="lazy" />
+        </figure>
+        <article className="home-story__content">
+          <p className="home-story__eyebrow">Описание приключения</p>
+          <h2>Пролог: тени над Талдором</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus semper ultricies
+            ligula, et suscipit mauris aliquet id. Integer non sapien pretium, posuere turpis
+            non, ultrices justo. Aliquam vel nibh eros. Suspendisse porta diam lorem.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque et augue a arcu
+            faucibus semper. Curabitur volutpat justo in lorem posuere, eget feugiat neque
+            interdum. Integer dictum dolor non leo tempor malesuada.
+          </p>
         </article>
       </section>
 
-      <section className="home-ornaments">
-        <article className="home-ornaments__item">
-          <Icon icon="game-icons:ornate-cross" className="home-ornaments__icon" />
-          <h3>Архив миссий</h3>
+      <section className="home-chronicle">
+        <header className="home-chronicle__header">
+          <p className="home-chronicle__eyebrow">Хроника похода</p>
+          <h2>Ключевые события кампании</h2>
+        </header>
+        <ol className="home-chronicle__list">
+          <li className="home-chronicle__item">
+            <h3>Глава I: Имперская аудиенция</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras at dapibus arcu.
+              Donec ac nisi eu sapien posuere lacinia.
+            </p>
+          </li>
+          <li className="home-chronicle__item">
+            <h3>Глава II: Дорога через рубежи</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pretium pulvinar
+              diam, sed luctus neque facilisis in.
+            </p>
+          </li>
+          <li className="home-chronicle__item">
+            <h3>Глава III: Печать короны</h3>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi luctus metus vitae
+              tortor volutpat, sed faucibus elit ultricies.
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      <section className="home-map">
+        <img src={symbolUrl} alt="Обзорная карта региона" className="home-map__image" loading="lazy" />
+        <div className="home-map__caption">
+          <h2>Карта кампании</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc hendrerit, lorem id
-            faucibus malesuada, urna erat convallis dui, non scelerisque nunc lacus non turpis.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus facilisis iaculis
+            urna, nec hendrerit dolor ultricies id.
+          </p>
+        </div>
+      </section>
+
+      <section className="home-notes">
+        <article className="home-notes__item">
+          <h3>Герои и союзники</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer sit amet consequat
+            velit, vitae tincidunt sem.
           </p>
         </article>
-        <article className="home-ornaments__item">
-          <Icon icon="game-icons:castle" className="home-ornaments__icon" />
-          <h3>Политический фон</h3>
+        <article className="home-notes__item">
+          <h3>Политические интриги</h3>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae sapien vel
-            turpis gravida dictum. Cras eget tempor lorem, et feugiat eros.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque suscipit lorem et
+            lacus consequat, ut sagittis massa interdum.
           </p>
         </article>
-        <article className="home-ornaments__item">
-          <Icon icon="game-icons:scroll-unfurled" className="home-ornaments__icon" />
-          <h3>Летопись отряда</h3>
+        <article className="home-notes__item">
+          <h3>Цели экспедиции</h3>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac elementum
-            sem. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce faucibus enim nec
+            sem lobortis, in facilisis sem finibus.
           </p>
         </article>
       </section>

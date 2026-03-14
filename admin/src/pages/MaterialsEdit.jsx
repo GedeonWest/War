@@ -15,12 +15,12 @@ export default function MaterialsEdit() {
         url: '',
       }}
       fields={[
-        { name: 'title', label: 'Название', type: 'text' },
+        { name: 'title', label: 'Название', type: 'text', required: true },
         { name: 'shortDescription', label: 'Краткое описание (для карточки)', type: 'textarea', rows: 2 },
         { name: 'description', label: 'Описание (для модалки)', type: 'textarea', rows: 3 },
         { name: 'details', label: 'Доп. детали', type: 'textarea', rows: 3 },
         { name: 'image', label: 'Ссылка на изображение', type: 'url' },
-        { name: 'url', label: 'Ссылка', type: 'url' },
+        { name: 'url', label: 'Ссылка', type: 'url', required: true },
       ]}
     />
   );
