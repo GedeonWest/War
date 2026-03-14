@@ -6,6 +6,7 @@ export const useDataStore = create((set, get) => ({
   raw: null,
   loading: false,
   error: null,
+  initiativeParticipants: [],
 
   fetchData: async () => {
     if (get().raw) return;
@@ -44,4 +45,8 @@ export const useDataStore = create((set, get) => ({
     const dpc = get().getByCategory('dpc') || [];
     return [...dead, ...dpc].filter((e) => e.death && e.death.trim() && e.death.toLowerCase() !== 'alive');
   },
+
+  setInitiativeParticipants: (participants) => set({ initiativeParticipants: participants }),
+
+  clearInitiativeParticipants: () => set({ initiativeParticipants: [] }),
 }));

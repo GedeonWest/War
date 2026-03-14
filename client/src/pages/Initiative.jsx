@@ -33,10 +33,12 @@ function moveItem(list, fromId, toId) {
 
 export default function Initiative() {
   const players = useDataStore((s) => s.getByCategory('players')) || [];
+  const participants = useDataStore((s) => s.initiativeParticipants);
+  const setParticipants = useDataStore((s) => s.setInitiativeParticipants);
+  const clearParticipants = useDataStore((s) => s.clearInitiativeParticipants);
   const [name, setName] = useState('');
   const [isEnemy, setIsEnemy] = useState(false);
   const [initiative, setInitiative] = useState('');
-  const [participants, setParticipants] = useState([]);
   const [dragId, setDragId] = useState(null);
   const [dragOverId, setDragOverId] = useState(null);
 
@@ -59,14 +61,14 @@ export default function Initiative() {
       initiative: Number(initiative),
     };
 
-    setParticipants((prev) => insertByInitiative(prev, nextItem));
+    setParticipants(insertByInitiative(participants, nextItem));
     setName('');
     setIsEnemy(false);
     setInitiative('');
   };
 
   const handleDelete = (id) => {
-    setParticipants((prev) => prev.filter((item) => item.id !== id));
+    setParticipants(participants.filter((item) => item.id !== id));
   };
 
   const handleDragStart = (id) => {
@@ -75,7 +77,7 @@ export default function Initiative() {
 
   const handleDrop = (targetId) => {
     if (!dragId) return;
-    setParticipants((prev) => moveItem(prev, dragId, targetId));
+    setParticipants(moveItem(participants, dragId, targetId));
     setDragId(null);
     setDragOverId(null);
   };
@@ -86,6 +88,16 @@ export default function Initiative() {
       <p className="page__muted">
         Добавляй участников, вручную переставляй карточки, удаляй выбывших из боя.
       </p>
+      <div className="initiative__actions">
+        <button
+          type="button"
+          className="initiative__finish-battle"
+          onClick={clearParticipants}
+          disabled={participants.length === 0}
+        >
+          Закончить бой
+        </button>
+      </div>
 
       <form className="initiative-form" onSubmit={handleAdd}>
         <label className="initiative-form__field">

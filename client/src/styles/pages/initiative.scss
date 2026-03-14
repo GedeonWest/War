@@ -10,6 +10,30 @@
   background: linear-gradient(180deg, rgba(#fff, 0.98), rgba(#f4f8ff, 0.96));
 }
 
+.initiative__actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: $spacing-s;
+}
+
+.initiative__finish-battle {
+  border: 1px solid rgba($color-danger, 0.35);
+  background: linear-gradient(180deg, rgba(#fff, 0.98), rgba(#ffeaea, 0.96));
+  color: #8d2d2d;
+  min-height: 36px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.initiative__finish-battle:hover {
+  background: rgba($color-danger, 0.12);
+}
+
+.initiative__finish-battle:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 .initiative-form__field {
   display: flex;
   flex-direction: column;
