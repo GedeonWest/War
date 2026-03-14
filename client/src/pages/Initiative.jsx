@@ -2,6 +2,8 @@ import { useMemo, useState } from 'react';
 import { useDataStore } from '../store/useDataStore';
 import '../styles/pages/initiative.scss';
 
+const EMPTY_PLAYERS = [];
+
 function createId() {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 }
@@ -32,10 +34,13 @@ function moveItem(list, fromId, toId) {
 }
 
 export default function Initiative() {
-  const players = useDataStore((s) => s.getByCategory('players')) || [];
+  const players = useDataStore((s) => s.raw?.players ?? EMPTY_PLAYERS);
   const participants = useDataStore((s) => s.initiativeParticipants);
   const setParticipants = useDataStore((s) => s.setInitiativeParticipants);
   const clearParticipants = useDataStore((s) => s.clearInitiativeParticipants);
+  const round = useDataStore((s) => s.initiativeRound ?? 1);
+  const incrementRound = useDataStore((s) => s.incrementInitiativeRound);
+  const setRound = useDataStore((s) => s.setInitiativeRound);
   const [name, setName] = useState('');
   const [isEnemy, setIsEnemy] = useState(false);
   const [initiative, setInitiative] = useState('');
@@ -89,6 +94,26 @@ export default function Initiative() {
         Добавляй участников, вручную переставляй карточки, удаляй выбывших из боя.
       </p>
       <div className="initiative__actions">
+        <div className="initiative__round">
+          <span className="initiative__round-label">Раунд</span>
+          <span className="initiative__round-value" aria-live="polite">{round}</span>
+          <button
+            type="button"
+            className="initiative__round-next"
+            onClick={incrementRound}
+          >
+            Следующий раунд
+          </button>
+          {round > 1 && (
+            <button
+              type="button"
+              className="initiative__round-reset"
+              onClick={() => setRound(1)}
+            >
+              Сбросить раунд
+            </button>
+          )}
+        </div>
         <button
           type="button"
           className="initiative__finish-battle"

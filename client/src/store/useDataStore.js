@@ -7,6 +7,7 @@ export const useDataStore = create((set, get) => ({
   loading: false,
   error: null,
   initiativeParticipants: [],
+  initiativeRound: 1,
 
   fetchData: async () => {
     if (get().raw) return;
@@ -48,5 +49,8 @@ export const useDataStore = create((set, get) => ({
 
   setInitiativeParticipants: (participants) => set({ initiativeParticipants: participants }),
 
-  clearInitiativeParticipants: () => set({ initiativeParticipants: [] }),
+  clearInitiativeParticipants: () => set({ initiativeParticipants: [], initiativeRound: 1 }),
+
+  setInitiativeRound: (round) => set({ initiativeRound: Math.max(1, round) }),
+  incrementInitiativeRound: () => set((s) => ({ initiativeRound: (s.initiativeRound ?? 1) + 1 })),
 }));

@@ -12,8 +12,57 @@
 
 .initiative__actions {
   display: flex;
-  justify-content: flex-end;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-s;
   margin-bottom: $spacing-s;
+}
+
+.initiative__round {
+  display: flex;
+  align-items: center;
+  gap: $spacing-s;
+}
+
+.initiative__round-label {
+  color: $color-text-muted;
+  font-size: 0.9rem;
+}
+
+.initiative__round-value {
+  font-weight: 600;
+  font-size: 1.15rem;
+  color: $color-text;
+  min-width: 1.5ch;
+}
+
+.initiative__round-next {
+  border: 1px solid rgba($color-brand-blue, 0.35);
+  background: linear-gradient(180deg, rgba(#fff, 0.98), rgba(#e8f0ff, 0.96));
+  color: $color-text;
+  min-height: 36px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.initiative__round-next:hover {
+  background: rgba($color-brand-blue, 0.1);
+}
+
+.initiative__round-reset {
+  border: 1px solid rgba($color-text-muted, 0.4);
+  background: rgba($color-text-muted, 0.06);
+  color: $color-text-muted;
+  min-height: 36px;
+  padding: 8px 12px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.initiative__round-reset:hover {
+  background: rgba($color-text-muted, 0.12);
+  color: $color-text;
 }
 
 .initiative__finish-battle {
