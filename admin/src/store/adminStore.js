@@ -5,6 +5,8 @@ const DEFAULT_DATA = {
   artifacts: [],
   materials: [],
   maps: [],
+  chronicles: [],
+  players: [],
   resources: [],
 };
 
@@ -48,6 +50,8 @@ export const useAdminStore = create((set, get) => ({
           artifacts: Array.isArray(raw.artifacts) ? raw.artifacts : [],
           materials: Array.isArray(raw.materials) ? raw.materials : (Array.isArray(raw.resources) ? raw.resources : []),
           maps: Array.isArray(raw.maps) ? raw.maps : [],
+          chronicles: Array.isArray(raw.chronicles) ? raw.chronicles : [],
+          players: Array.isArray(raw.players) ? raw.players : [],
           resources: Array.isArray(raw.resources) ? raw.resources : (Array.isArray(raw.materials) ? raw.materials : []),
         },
         fetched: true,

@@ -38,6 +38,39 @@
   max-width: 720px;
 }
 
+.home-banner__layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-l;
+  align-items: center;
+}
+
+.home-banner__crest-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.home-banner__crest-frame {
+  width: min(68vw, 280px);
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  padding: 10px;
+  border: 2px solid rgba(255, 255, 255, 0.72);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 236, 186, 0.55),
+    0 14px 30px rgba(8, 21, 38, 0.4);
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255, 236, 186, 0.42), rgba(84, 112, 153, 0.18)),
+    rgba(7, 19, 35, 0.45);
+}
+
+.home-banner__crest {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
 .home-banner__eyebrow {
   margin: 0 0 $spacing-s;
   color: rgba(255, 255, 255, 0.86);
@@ -58,13 +91,6 @@
   max-width: 62ch;
   color: rgba(255, 255, 255, 0.92);
   line-height: 1.65;
-}
-
-.home-banner__nav {
-  margin-top: $spacing-m;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: $spacing-s;
 }
 
 .home-story {
@@ -191,6 +217,32 @@
   filter: saturate(1.12) contrast(1.06);
 }
 
+.home-map__placeholder {
+  width: 100%;
+  min-height: 280px;
+  display: grid;
+  place-items: center;
+  padding: $spacing-l;
+  background:
+    linear-gradient(180deg, rgba(16, 35, 63, 0.7), rgba(20, 44, 78, 0.72)),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255, 255, 255, 0.05) 0,
+      rgba(255, 255, 255, 0.05) 10px,
+      rgba(255, 255, 255, 0.02) 10px,
+      rgba(255, 255, 255, 0.02) 20px
+    );
+}
+
+.home-map__placeholder span {
+  color: rgba(255, 255, 255, 0.9);
+  border: 1px dashed rgba(255, 255, 255, 0.42);
+  padding: 10px 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.75rem;
+}
+
 .home-map__caption {
   position: absolute;
   left: $spacing-m;
@@ -243,8 +295,12 @@
     padding: $spacing-xl;
   }
 
-  .home-banner__nav {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .home-banner__layout {
+    grid-template-columns: 1fr auto;
+  }
+
+  .home-banner__crest-frame {
+    width: 260px;
   }
 
   .home-story {
@@ -257,6 +313,10 @@
   }
 
   .home-map__image {
+    min-height: 380px;
+  }
+
+  .home-map__placeholder {
     min-height: 380px;
   }
 

@@ -6,6 +6,9 @@ import Dossiers from './pages/Dossiers';
 import Deceased from './pages/Deceased';
 import Resources from './pages/Resources';
 import Maps from './pages/Maps';
+import Chronicles from './pages/Chronicles';
+import Players from './pages/Players';
+import Initiative from './pages/Initiative';
 
 function App() {
   return (
@@ -17,6 +20,9 @@ function App() {
         <Route path="/deceased" element={<Deceased />} />
         <Route path="/resources" element={<Resources />} />
         <Route path="/maps" element={<Maps />} />
+        <Route path="/chronicles" element={<Chronicles />} />
+        <Route path="/players" element={<Players />} />
+        <Route path="/initiative" element={<Initiative />} />
       </Routes>
     </Layout>
   );

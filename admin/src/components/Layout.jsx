@@ -6,6 +6,8 @@ const SECTIONS = [
   { path: '/artifacts', label: 'Артефакты' },
   { path: '/materials', label: 'Материалы' },
   { path: '/maps', label: 'Карты' },
+  { path: '/chronicles', label: 'Хроники' },
+  { path: '/players', label: 'Игроки' },
 ];
 
 export default function Layout({ children }) {

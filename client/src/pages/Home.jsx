@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import '../styles/pages/home.scss';
 
 export default function Home() {
@@ -12,20 +11,21 @@ export default function Home() {
       <section className="home-banner">
         <img src={wallUrl} alt="" className="home-banner__bg" />
         <div className="home-banner__overlay" />
-        <div className="home-banner__content">
-          <p className="home-banner__eyebrow">Pathfinder 1e campaign journal</p>
-          <h1 className="home-banner__title">War for the Crown</h1>
-          <p className="home-banner__lead">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae sem non est
-            cursus tincidunt. Sed in mauris eu nisi bibendum volutpat vitae et neque.
-          </p>
-          <nav className="home-banner__nav">
-            <Link to="/agents" className="arcane-button">Агенты</Link>
-            <Link to="/dossiers" className="arcane-button">Досье</Link>
-            <Link to="/deceased" className="arcane-button">Погибшие</Link>
-            <Link to="/resources" className="arcane-button">Ресурсы</Link>
-            <Link to="/maps" className="arcane-button">Карты</Link>
-          </nav>
+        <div className="home-banner__layout">
+          <div className="home-banner__content">
+            <p className="home-banner__eyebrow">Pathfinder 1e campaign journal</p>
+            <h1 className="home-banner__title">War for the Crown</h1>
+            <p className="home-banner__lead">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae sem non est
+              cursus tincidunt. Sed in mauris eu nisi bibendum volutpat vitae et neque.
+            </p>
+          </div>
+
+          <div className="home-banner__crest-wrap">
+            <div className="home-banner__crest-frame">
+              <img src={symbolUrl} alt="Герб Талдора" className="home-banner__crest" loading="lazy" />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -80,7 +80,9 @@ export default function Home() {
       </section>
 
       <section className="home-map">
-        <img src={symbolUrl} alt="Обзорная карта региона" className="home-map__image" loading="lazy" />
+        <div className="home-map__placeholder" aria-label="Карта будет добавлена позже">
+          <span>Карта кампании будет добавлена позже</span>
+        </div>
         <div className="home-map__caption">
           <h2>Карта кампании</h2>
           <p>

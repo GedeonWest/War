@@ -1,0 +1,69 @@
+@use '../base/variables' as *;
+
+.page_chronicles .page__muted {
+  margin-bottom: $spacing-m;
+}
+
+.chronicles__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-m;
+}
+
+.chronicles__item {
+  position: relative;
+  padding: $spacing-m;
+  border: 1px solid rgba($color-brand-blue, 0.28);
+  background: linear-gradient(180deg, rgba(#fff, 0.97), rgba(#f5f8fd, 0.95));
+}
+
+.chronicles__item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: linear-gradient(180deg, $color-brand-blue, $color-brand-green);
+}
+
+.chronicles__header {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+  margin-bottom: $spacing-s;
+}
+
+.chronicles__title {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.chronicles__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  color: $color-text-muted;
+  font-size: 0.84rem;
+}
+
+.chronicles__meta span {
+  padding: 2px 8px;
+  border: 1px solid rgba($color-brand-blue, 0.22);
+  background: rgba($color-brand-blue, 0.08);
+}
+
+.chronicles__summary {
+  margin: 0 0 $spacing-s;
+  color: $color-text;
+  font-weight: 600;
+}
+
+.chronicles__text {
+  margin: 0;
+  color: $color-text-muted;
+  line-height: 1.65;
+}

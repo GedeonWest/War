@@ -25,7 +25,7 @@ export default function Dashboard() {
       )}
       {raw && !error && (
         <p className="page__muted">
-          Данные загружены. Используйте простые разделы слева: НПС, Артефакты, Материалы и Карты.
+          Данные загружены. Используйте разделы слева: НПС, Артефакты, Материалы, Карты, Хроники и Игроки.
         </p>
       )}
       <div className="dashboard-links">
@@ -33,6 +33,8 @@ export default function Dashboard() {
         <Link to="/artifacts" className="dashboard-links__item">Артефакты</Link>
         <Link to="/materials" className="dashboard-links__item">Материалы</Link>
         <Link to="/maps" className="dashboard-links__item">Карты</Link>
+        <Link to="/chronicles" className="dashboard-links__item">Хроники</Link>
+        <Link to="/players" className="dashboard-links__item">Игроки</Link>
       </div>
     </div>
   );

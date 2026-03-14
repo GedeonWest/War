@@ -125,6 +125,20 @@
   }
 }
 
+.layout__copyright {
+  margin: $spacing-s auto 0;
+  max-width: 980px;
+  font-size: 0.68rem;
+  line-height: 1.45;
+  color: rgba($color-text-muted, 0.95);
+  text-align: center;
+}
+
+.layout__copyright a {
+  color: inherit;
+  text-decoration: underline;
+}
+
 @media (min-width: $breakpoint-md) {
   .layout__nav {
     gap: $spacing-s;

@@ -1,0 +1,116 @@
+@use '../base/variables' as *;
+
+.initiative-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-s;
+  margin-bottom: $spacing-m;
+  padding: $spacing-m;
+  border: 1px solid rgba($color-brand-blue, 0.24);
+  background: linear-gradient(180deg, rgba(#fff, 0.98), rgba(#f4f8ff, 0.96));
+}
+
+.initiative-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.initiative-form__label {
+  color: $color-text-muted;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.initiative-form__field input {
+  width: 100%;
+  min-height: 42px;
+  border: 1px solid rgba($color-brand-blue, 0.3);
+  background: #fff;
+  padding: 8px 10px;
+}
+
+.initiative-form__field input:focus {
+  outline: 2px solid rgba($color-brand-blue, 0.2);
+  border-color: rgba($color-brand-blue, 0.7);
+}
+
+.initiative-form__enemy {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 40px;
+  color: $color-text;
+}
+
+.initiative-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $spacing-s;
+}
+
+.initiative-list__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $spacing-m;
+  padding: $spacing-s $spacing-m;
+  border: 2px solid transparent;
+  background: linear-gradient(180deg, rgba(#fff, 0.98), rgba(#f9fbff, 0.96));
+  cursor: grab;
+}
+
+.initiative-list__item:active {
+  cursor: grabbing;
+}
+
+.initiative-list__item_ally {
+  border-color: rgba($color-brand-green, 0.72);
+}
+
+.initiative-list__item_enemy {
+  border-color: rgba($color-danger, 0.72);
+}
+
+.initiative-list__item_over {
+  box-shadow: 0 0 0 2px rgba($color-brand-blue, 0.28);
+}
+
+.initiative-list__content {
+  min-width: 0;
+}
+
+.initiative-list__name {
+  margin: 0;
+  font-size: 1.05rem;
+}
+
+.initiative-list__value {
+  margin: 4px 0 0;
+  color: $color-text-muted;
+  font-size: 0.88rem;
+}
+
+.initiative-list__remove {
+  border: 1px solid rgba($color-danger, 0.35);
+  background: rgba($color-danger, 0.08);
+  color: #8d2d2d;
+  min-height: 34px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.initiative-list__remove:hover {
+  background: rgba($color-danger, 0.13);
+}
+
+@media (min-width: $breakpoint-md) {
+  .initiative-form {
+    grid-template-columns: minmax(220px, 1fr) 180px auto auto;
+    align-items: end;
+  }
+}

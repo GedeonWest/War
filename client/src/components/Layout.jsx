@@ -10,6 +10,9 @@ const navItems = [
   { path: '/deceased', label: 'Погибшие' },
   { path: '/resources', label: 'Ресурсы' },
   { path: '/maps', label: 'Карты' },
+  { path: '/chronicles', label: 'Хроники' },
+  { path: '/players', label: 'Игроки' },
+  { path: '/initiative', label: 'Инициатива' },
 ];
 
 export default function Layout({ children }) {
@@ -50,6 +53,19 @@ export default function Layout({ children }) {
         <a href={`${base}/admin/`} className="layout__admin-link" rel="noopener noreferrer">
           Админка
         </a>
+        <p className="layout__copyright">
+          https://gedeonwest.github.io/War uses trademarks and/or copyrights owned by Paizo Inc., used under Paizo&apos;s
+          {' '}
+          Community Use Policy
+          {' '}
+          (<a href="https://paizo.com" target="_blank" rel="noopener noreferrer">paizo.com</a>).
+          {' '}
+          This includes images and maps from the War for the Crown Adventure Path. We are expressly prohibited
+          from charging you to use or access this content. https://gedeonwest.github.io/War is not published, endorsed, or
+          specifically approved by Paizo. For more information about Paizo Inc. and Paizo products, visit
+          {' '}
+          <a href="https://paizo.com" target="_blank" rel="noopener noreferrer">paizo.com</a>.
+        </p>
       </footer>
     </div>
   );
