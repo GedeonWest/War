@@ -330,6 +330,26 @@ export default function SimpleCollectionEditor({
                         aria-invalid={Boolean(draftErrors[field.name])}
                         onChange={(e) => updateDraft(field.name, e.target.value)}
                       />
+                    ) : field.type === 'select' ? (
+                      <select
+                        value={draft[field.name] ?? ''}
+                        aria-invalid={Boolean(draftErrors[field.name])}
+                        onChange={(e) => updateDraft(field.name, e.target.value)}
+                      >
+                        <option value="">—</option>
+                        {(field.options || []).map((opt) => (
+                          <option key={opt.value} value={opt.value}>{opt.label}</option>
+                        ))}
+                      </select>
+                    ) : field.type === 'checkbox' ? (
+                      <label className="admin-edit__checkbox-wrap">
+                        <input
+                          type="checkbox"
+                          checked={Boolean(draft[field.name])}
+                          onChange={(e) => updateDraft(field.name, e.target.checked)}
+                        />
+                        <span>{field.checkboxLabel || field.label}</span>
+                      </label>
                     ) : field.type === 'file' ? (
                       <div className="admin-edit__file-wrap">
                         {draft[field.name] ? (
