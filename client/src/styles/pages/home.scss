@@ -4,6 +4,7 @@
   text-align: left;
   display: grid;
   gap: $spacing-l;
+  min-width: 0;
 }
 
 .home-banner {
@@ -14,6 +15,7 @@
   padding: $spacing-l $spacing-m;
   border: 1px solid rgba(69, 119, 188, 0.32);
   box-shadow: $shadow-card;
+  min-width: 0;
 }
 
 .home-banner__bg {
@@ -36,6 +38,8 @@
 
 .home-banner__content {
   max-width: 720px;
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .home-banner__layout {
@@ -97,6 +101,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: $spacing-m;
+  min-width: 0;
 }
 
 .home-story__media {
@@ -105,6 +110,7 @@
   box-shadow: $shadow-card;
   overflow: hidden;
   min-height: 240px;
+  min-width: 0;
 }
 
 .home-story__media img {
@@ -118,6 +124,8 @@
   border: 1px solid rgba(61, 165, 73, 0.34);
   background: linear-gradient(180deg, rgba(#fff, 0.99), rgba(#f4fbf5, 0.96));
   box-shadow: $shadow-card;
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .home-story__eyebrow {
@@ -148,6 +156,8 @@
   border: 1px solid rgba(69, 119, 188, 0.28);
   background: linear-gradient(180deg, rgba(#fff, 0.98), rgba(#f5f8fd, 0.96));
   box-shadow: $shadow-card;
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .home-chronicle__header h2 {
@@ -200,12 +210,9 @@
 
 .home-map {
   position: relative;
-  width: 100vw;
-  margin-left: calc(50% - 50vw);
-  margin-right: calc(50% - 50vw);
+  width: 100%;
   min-height: 280px;
-  border-top: 1px solid rgba(69, 119, 188, 0.26);
-  border-bottom: 1px solid rgba(69, 119, 188, 0.26);
+  border: 1px solid rgba(69, 119, 188, 0.26);
   overflow: hidden;
 }
 
@@ -270,6 +277,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: $spacing-m;
+  min-width: 0;
 }
 
 .home-notes__item {
@@ -277,6 +285,8 @@
   border: 1px solid rgba(61, 165, 73, 0.34);
   background: linear-gradient(180deg, rgba(#fff, 0.99), rgba(#f4fbf5, 0.95));
   box-shadow: $shadow-card;
+  min-width: 0;
+  overflow-wrap: break-word;
 }
 
 .home-notes__item h3 {
@@ -309,6 +319,11 @@
   }
 
   .home-map {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    border-left: none;
+    border-right: none;
     min-height: 380px;
   }
 

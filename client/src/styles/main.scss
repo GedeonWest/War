@@ -5,6 +5,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
   background:
     linear-gradient(to bottom, rgba(#fff, 0.76), rgba(#fff, 0.9) 180px, #fff 320px),
     url('/assets/images/wall.jpg') center top / cover no-repeat;
@@ -21,6 +22,7 @@
   padding: $spacing-l;
   position: relative;
   overflow: hidden;
+  min-width: 0;
 }
 
 .page::before,
