@@ -1,24 +1,24 @@
 {
   "npcs": [
     {
-      "name": "Тестовый персонаж",
-      "role": "Тестов",
+      "name": "Леди Мартелла Лотид",
+      "role": "Наниматель",
       "status": "Жив",
       "attitude": "Нейтрал",
       "shortDescription": "Тестовый персонаж",
       "description": "Тестовый персонаж",
       "details": "Тест тест етст",
-      "image": ""
+      "image": "https://i.ibb.co/7NnKHS6t/image.jpg"
     },
     {
-      "name": "Тестовый персонаж 2",
+      "name": "Тестовый персонаж с картинкой поменбше",
       "role": "Тест",
       "status": "Тест",
       "attitude": "Нейтрал",
       "shortDescription": "Очень тестовый персонаж",
       "description": "Самый тестовый",
       "details": "много теста",
-      "image": ""
+      "image": "https://s3.us-east-005.backblazeb2.com/artgram-co/covers/ouCQZo6ZXXuav09edWWF552IPyYFhugd6lw0aqZY.webp"
     },
     {
       "name": "Новый тестовый перс",
