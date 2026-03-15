@@ -43,7 +43,16 @@
   "materials": [],
   "maps": [],
   "chronicles": [],
-  "players": [],
+  "players": [
+    {
+      "name": "ТЕстовый",
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWEfyxSgB4LWU4mEnkRnq9zDBB-BLmMyMB6Q&s",
+      "about": "Тестовый",
+      "level": "1",
+      "status": "Жив",
+      "pdf": "https://raw.githubusercontent.com/GedeonWest/War/main/client/public/data/files/players/1773589382143-PathfinderCharacterSheet-NoCalculations.pdf"
+    }
+  ],
   "resources": [],
   "active": [],
   "agent": [],
