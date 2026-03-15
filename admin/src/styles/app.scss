@@ -281,6 +281,36 @@
   font-size: 0.8rem;
 }
 
+.admin-edit__file-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-s;
+}
+
+.admin-edit__file-current {
+  display: flex;
+  align-items: center;
+  gap: $spacing-s;
+}
+
+.admin-edit__file-current a {
+  color: $color-primary;
+}
+
+.admin-edit__file-clear {
+  padding: 4px 10px;
+  font-size: 0.85rem;
+  border: 1px solid $color-border;
+  border-radius: $radius-s;
+  background: #fff;
+  cursor: pointer;
+}
+
+.admin-edit__file-uploading {
+  color: $color-text-muted;
+  font-size: 0.9rem;
+}
+
 .admin-modal {
   position: fixed;
   inset: 0;

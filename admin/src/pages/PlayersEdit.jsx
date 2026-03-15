@@ -20,7 +20,7 @@ export default function PlayersEdit() {
         { name: 'about', label: 'О нем', type: 'textarea', rows: 4, required: true },
         { name: 'level', label: 'Уровень', type: 'text', required: true },
         { name: 'status', label: 'Статус (alive/dead/prison)', type: 'text', required: true },
-        { name: 'pdf', label: 'Ссылка на PDF чарника', type: 'url', required: true },
+        { name: 'pdf', label: 'PDF чарника', type: 'file', accept: '.pdf,application/pdf' },
       ]}
     />
   );

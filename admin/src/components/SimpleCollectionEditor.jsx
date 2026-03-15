@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useAdminStore } from '../store/adminStore';
 import { getStoredGitHub } from './Settings';
-import { saveFile } from '../services/githubApi';
+import { saveFile, getDefaultBranch, getRawUrl } from '../services/githubApi';
 
 function getCardTitle(item) {
   return item.name || item.title || item.role || item.type || 'Без названия';
@@ -30,7 +30,6 @@ function getDraftErrors(fields, draft) {
     if ((field.type === 'url' || field.type === 'image') && normalized) {
       try {
         // URL constructor handles robust validation for http(s) and absolute links.
-        // We store only absolute URLs in the JSON data.
         // eslint-disable-next-line no-new
         new URL(normalized);
       } catch {
@@ -61,6 +60,7 @@ export default function SimpleCollectionEditor({
   const [modalIndex, setModalIndex] = useState(null);
   const [draft, setDraft] = useState({ ...emptyItem });
   const [draftErrors, setDraftErrors] = useState({});
+  const [uploadingFile, setUploadingFile] = useState(null);
 
   const list = (raw && raw[collectionKey]) || [];
 
@@ -144,6 +144,45 @@ export default function SimpleCollectionEditor({
       delete next[field];
       return next;
     });
+  };
+
+  const handleFileUpload = async (fieldName, file) => {
+    if (!file) return;
+    const { owner, repo, token } = getStoredGitHub();
+    if (!owner || !repo || !token) {
+      alert('Укажите owner, repo и token в настройках GitHub (Обзор), чтобы загружать файлы.');
+      return;
+    }
+    setUploadingFile(fieldName);
+    try {
+      const base64 = await new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const result = reader.result;
+          const base64 = result.includes(',') ? result.split(',')[1] : result;
+          resolve(base64);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+      const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, '_');
+      const path = `client/public/data/files/players/${Date.now()}-${safeName}`;
+      await saveFile({
+        owner,
+        repo,
+        path,
+        content: base64,
+        message: `Upload PDF: ${safeName}`,
+        token,
+      });
+      const branch = await getDefaultBranch({ owner, repo, token });
+      const rawUrl = getRawUrl(owner, repo, branch, path);
+      updateDraft(fieldName, rawUrl);
+    } catch (e) {
+      alert(`Ошибка загрузки файла: ${e.message}`);
+    } finally {
+      setUploadingFile(null);
+    }
   };
 
   const saveModal = () => {
@@ -291,6 +330,37 @@ export default function SimpleCollectionEditor({
                         aria-invalid={Boolean(draftErrors[field.name])}
                         onChange={(e) => updateDraft(field.name, e.target.value)}
                       />
+                    ) : field.type === 'file' ? (
+                      <div className="admin-edit__file-wrap">
+                        {draft[field.name] ? (
+                          <div className="admin-edit__file-current">
+                            <a href={draft[field.name]} target="_blank" rel="noopener noreferrer">
+                              Текущий файл
+                            </a>
+                            <button
+                              type="button"
+                              className="admin-edit__file-clear"
+                              onClick={() => updateDraft(field.name, '')}
+                            >
+                              Удалить
+                            </button>
+                          </div>
+                        ) : null}
+                        {uploadingFile === field.name ? (
+                          <span className="admin-edit__file-uploading">Загрузка…</span>
+                        ) : (
+                          <input
+                            type="file"
+                            accept={field.accept || '.pdf,application/pdf'}
+                            disabled={!!uploadingFile}
+                            onChange={(e) => {
+                              const file = e.target.files?.[0];
+                              if (file) handleFileUpload(field.name, file);
+                              e.target.value = '';
+                            }}
+                          />
+                        )}
+                      </div>
                     ) : (
                       <input
                         type={field.type || 'text'}

@@ -58,3 +58,19 @@ export async function uploadImage({ owner, repo, path, base64Content, message, t
     token,
   });
 }
+
+export async function getDefaultBranch({ owner, repo, token }) {
+  const res = await fetch(`${GITHUB_API}/repos/${owner}/${repo}`, {
+    headers: {
+      Accept: 'application/vnd.github.v3+json',
+      Authorization: token ? `Bearer ${token}` : undefined,
+    },
+  });
+  if (!res.ok) throw new Error(res.statusText);
+  const data = await res.json();
+  return data.default_branch || 'main';
+}
+
+export function getRawUrl(owner, repo, branch, path) {
+  return `https://raw.githubusercontent.com/${owner}/${repo}/${branch}/${path}`;
+}
