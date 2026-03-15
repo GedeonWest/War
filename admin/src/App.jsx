@@ -8,6 +8,7 @@ import MaterialsEdit from './pages/MaterialsEdit';
 import MapsSimpleEdit from './pages/MapsSimpleEdit';
 import ChroniclesEdit from './pages/ChroniclesEdit';
 import PlayersEdit from './pages/PlayersEdit';
+import HomeEdit from './pages/HomeEdit';
 import './styles/app.scss';
 
 export default function App() {
@@ -16,6 +17,7 @@ export default function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Dashboard />} />
+        <Route path="/home" element={<HomeEdit />} />
         <Route path="/npcs" element={<NpcsEdit />} />
         <Route path="/artifacts" element={<ArtifactsEdit />} />
         <Route path="/materials" element={<MaterialsEdit />} />

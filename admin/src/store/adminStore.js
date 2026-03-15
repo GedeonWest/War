@@ -1,6 +1,16 @@
 import { create } from 'zustand';
 
+const DEFAULT_HOME = {
+  bannerEyebrow: '',
+  bannerTitle: '',
+  bannerLead: '',
+  storyImage: '',
+  storyTitle: '',
+  storyDescription: '',
+};
+
 const DEFAULT_DATA = {
+  home: { ...DEFAULT_HOME },
   npcs: [],
   artifacts: [],
   materials: [],
@@ -46,6 +56,7 @@ export const useAdminStore = create((set, get) => ({
         raw: {
           ...DEFAULT_DATA,
           ...raw,
+          home: raw.home && typeof raw.home === 'object' ? { ...DEFAULT_HOME, ...raw.home } : { ...DEFAULT_HOME },
           npcs: Array.isArray(raw.npcs) ? raw.npcs : [],
           artifacts: Array.isArray(raw.artifacts) ? raw.artifacts : [],
           materials: Array.isArray(raw.materials) ? raw.materials : (Array.isArray(raw.resources) ? raw.resources : []),
@@ -96,6 +107,8 @@ export const useAdminStore = create((set, get) => ({
   setResources: (resources) => set((s) => ({ raw: { ...s.raw, resources, materials: resources } })),
   setMaterials: (materials) => set((s) => ({ raw: { ...s.raw, materials, resources: materials } })),
   setMaps: (maps) => set((s) => ({ raw: { ...s.raw, maps } })),
+
+  setHome: (home) => set((s) => ({ raw: { ...s.raw, home: { ...DEFAULT_HOME, ...home } } })),
 
   setSaved: (saved) => set({ saved }),
 }));

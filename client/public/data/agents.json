@@ -1,4 +1,12 @@
 {
+  "home": {
+    "bannerEyebrow": "Pathfinder 1e campaign journal",
+    "bannerTitle": "War for the Crown",
+    "bannerLead": "",
+    "storyImage": "",
+    "storyTitle": "",
+    "storyDescription": ""
+  },
   "npcs": [
     {
       "name": "Леди Мартелла Лотид",

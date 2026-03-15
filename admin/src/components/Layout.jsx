@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import '../styles/components/layout.scss';
 
 const SECTIONS = [
+  { path: '/home', label: 'Главная' },
   { path: '/npcs', label: 'НПС' },
   { path: '/artifacts', label: 'Артефакты' },
   { path: '/materials', label: 'Материалы' },

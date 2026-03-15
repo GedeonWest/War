@@ -1,0 +1,20 @@
+@use '../styles/base/variables' as *;
+
+.home-edit__section {
+  margin-bottom: $spacing-xl;
+}
+
+.home-edit__section-title {
+  margin: 0 0 $spacing-m;
+  font-size: 1.1rem;
+  color: $color-text;
+  padding-bottom: $spacing-s;
+  border-bottom: 1px solid $color-border;
+}
+
+.home-edit__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-s;
+  margin-top: $spacing-l;
+}

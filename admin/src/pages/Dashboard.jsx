@@ -29,6 +29,7 @@ export default function Dashboard() {
         </p>
       )}
       <div className="dashboard-links">
+        <Link to="/home" className="dashboard-links__item">Главная</Link>
         <Link to="/npcs" className="dashboard-links__item">НПС</Link>
         <Link to="/artifacts" className="dashboard-links__item">Артефакты</Link>
         <Link to="/materials" className="dashboard-links__item">Материалы</Link>
