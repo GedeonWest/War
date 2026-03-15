@@ -1,6 +1,17 @@
-import { useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useDataStore } from '../store/useDataStore';
 import '../styles/pages/initiative.scss';
+
+const DRAG_THRESHOLD_PX = 10;
+
+function getItemIdFromElement(el) {
+  let node = el;
+  while (node && node !== document.body) {
+    if (node.dataset?.initiativeItemId) return node.dataset.initiativeItemId;
+    node = node.parentElement;
+  }
+  return null;
+}
 
 const EMPTY_PLAYERS = [];
 
@@ -46,6 +57,10 @@ export default function Initiative() {
   const [initiative, setInitiative] = useState('');
   const [dragId, setDragId] = useState(null);
   const [dragOverId, setDragOverId] = useState(null);
+  const touchStartRef = useRef({ x: 0, y: 0 });
+  const touchDragActiveRef = useRef(false);
+  const dragOverIdRef = useRef(null);
+  dragOverIdRef.current = dragOverId;
 
   const canAdd = useMemo(() => {
     return name.trim().length > 0 && initiative !== '' && !Number.isNaN(Number(initiative));
@@ -80,12 +95,58 @@ export default function Initiative() {
     setDragId(id);
   };
 
-  const handleDrop = (targetId) => {
+  const handleDrop = useCallback((targetId) => {
     if (!dragId) return;
-    setParticipants(moveItem(participants, dragId, targetId));
+    setParticipants((current) => moveItem(current, dragId, targetId));
     setDragId(null);
     setDragOverId(null);
-  };
+  }, [dragId]);
+
+  const handleTouchStart = useCallback((id, e) => {
+    if (e.touches.length !== 1) return;
+    touchStartRef.current = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    touchDragActiveRef.current = false;
+    setDragId(id);
+  }, []);
+
+  useEffect(() => {
+    if (dragId == null) return;
+
+    const onTouchMove = (e) => {
+      if (e.touches.length !== 1) return;
+      const { clientX, clientY } = e.touches[0];
+      if (!touchDragActiveRef.current) {
+        const dx = Math.abs(clientX - touchStartRef.current.x);
+        const dy = Math.abs(clientY - touchStartRef.current.y);
+        if (dx > dy || (dx <= DRAG_THRESHOLD_PX && dy <= DRAG_THRESHOLD_PX)) return;
+        touchDragActiveRef.current = true;
+      }
+      e.preventDefault();
+      const target = document.elementFromPoint(clientX, clientY);
+      const targetId = getItemIdFromElement(target);
+      setDragOverId((prev) => (targetId !== prev ? targetId : prev));
+    };
+
+    const onTouchEnd = (e) => {
+      if (e.changedTouches.length !== 1) return;
+      const overId = dragOverIdRef.current;
+      if (touchDragActiveRef.current && overId && overId !== dragId) {
+        setParticipants((current) => moveItem(current, dragId, overId));
+      }
+      setDragId(null);
+      setDragOverId(null);
+      touchDragActiveRef.current = false;
+      document.removeEventListener('touchmove', onTouchMove, { passive: false });
+      document.removeEventListener('touchend', onTouchEnd);
+    };
+
+    document.addEventListener('touchmove', onTouchMove, { passive: false });
+    document.addEventListener('touchend', onTouchEnd);
+    return () => {
+      document.removeEventListener('touchmove', onTouchMove, { passive: false });
+      document.removeEventListener('touchend', onTouchEnd);
+    };
+  }, [dragId, dragOverId]);
 
   return (
     <div className="page page_initiative">
@@ -172,6 +233,7 @@ export default function Initiative() {
           {participants.map((item) => (
             <li
               key={item.id}
+              data-initiative-item-id={item.id}
               className={[
                 'initiative-list__item',
                 item.isEnemy ? 'initiative-list__item_enemy' : 'initiative-list__item_ally',
@@ -189,6 +251,7 @@ export default function Initiative() {
                 setDragId(null);
                 setDragOverId(null);
               }}
+              onTouchStart={(e) => handleTouchStart(item.id, e)}
             >
               <div className="initiative-list__content">
                 <h2 className="initiative-list__name">{item.name}</h2>

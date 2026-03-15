@@ -47,7 +47,10 @@ export const useDataStore = create((set, get) => ({
     return [...dead, ...dpc].filter((e) => e.death && e.death.trim() && e.death.toLowerCase() !== 'alive');
   },
 
-  setInitiativeParticipants: (participants) => set({ initiativeParticipants: participants }),
+  setInitiativeParticipants: (arg) =>
+    set((s) => ({
+      initiativeParticipants: typeof arg === 'function' ? arg(s.initiativeParticipants || []) : arg,
+    })),
 
   clearInitiativeParticipants: () => set({ initiativeParticipants: [], initiativeRound: 1 }),
 
