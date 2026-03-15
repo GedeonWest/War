@@ -33,6 +33,8 @@
 }
 
 .player-card {
+  width: 100%;
+  min-width: 0;
   display: grid;
   grid-template-columns: 1fr;
   background: linear-gradient(180deg, rgba(#fff, 0.98), rgba(#f8fbff, 0.95));
@@ -42,6 +44,8 @@
 }
 
 .player-card__media {
+  width: 100%;
+  min-width: 0;
   aspect-ratio: 3 / 4;
   max-height: 320px;
   background: #d7e3f5;
@@ -49,9 +53,11 @@
 }
 
 .player-card__media img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .player-card__placeholder {
@@ -133,5 +139,15 @@
 .player-card__pdf-missing {
   color: $color-text-muted;
   font-size: 0.85rem;
+}
+
+@media (max-width: $breakpoint-md) {
+  .player-card__media {
+    aspect-ratio: 4 / 3;
+  }
+
+  .player-card__placeholder {
+    aspect-ratio: 4 / 3;
+  }
 }
 
