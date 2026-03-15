@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useDataStore } from '../store/useDataStore';
 import AgentCard from '../components/AgentCard';
+import CardMasonry from '../components/CardMasonry';
 import EntityModal from '../components/EntityModal';
 import { formatName } from '../components/AgentCard';
 import '../styles/pages/deceased.scss';
@@ -39,13 +40,13 @@ export default function Deceased() {
           onChange={(e) => setFilter(e.target.value)}
         />
       </div>
-      <ul className="deceased__list">
+      <CardMasonry className="deceased__list">
         {filtered.map((item, i) => (
-          <li key={i} className="deceased__item">
+          <div key={i} className="deceased__item">
             <AgentCard item={item} onClick={() => setSelected(item)} />
-          </li>
+          </div>
         ))}
-      </ul>
+      </CardMasonry>
       <p className="deceased__count">Найдено записей: {filtered.length}</p>
       {filtered.length === 0 && <p className="page__muted">Нет записей.</p>}
       <EntityModal

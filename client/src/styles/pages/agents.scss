@@ -52,18 +52,10 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  display: grid;
-  gap: $spacing-m;
 }
 
 .agents__item {
   margin: 0;
-}
-
-@media (min-width: $breakpoint-md) {
-  .agents__list {
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  }
 }
 
 @media (max-width: $breakpoint-md) {

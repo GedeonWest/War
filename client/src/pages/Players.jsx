@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { useDataStore } from '../store/useDataStore';
+import CardMasonry from '../components/CardMasonry';
 import '../styles/pages/players.scss';
 
 const STATUS_LABELS = {
@@ -54,12 +55,12 @@ export default function Players() {
       {filteredPlayers.length === 0 ? (
         <p className="page__muted">Персонажей пока нет.</p>
       ) : (
-        <ul className="players__list">
+        <CardMasonry className="players__list">
           {filteredPlayers.map((item, index) => {
             const status = normalizeStatus(item.status);
             const statusLabel = STATUS_LABELS[status] || item.status || 'Не указан';
             return (
-              <li key={`${item.name || 'player'}-${index}`} className="players__item">
+              <div key={`${item.name || 'player'}-${index}`} className="players__item">
                 <article className="player-card">
                   <div className="player-card__media">
                     {item.image ? (
@@ -70,6 +71,7 @@ export default function Players() {
                   </div>
                   <div className="player-card__body">
                     <h2 className="player-card__name">{item.name || 'Без имени'}</h2>
+                    <span className="player-card__tag">Персонаж игрока</span>
                     <div className="player-card__meta">
                       <span className={`player-card__status player-card__status_${status || 'unknown'}`}>
                         {statusLabel}
@@ -78,7 +80,7 @@ export default function Players() {
                     </div>
                     <p className="player-card__about">{item.about || 'Описание отсутствует.'}</p>
                     {item.pdf ? (
-                      <a className="arcane-button player-card__pdf" href={item.pdf} target="_blank" rel="noopener noreferrer">
+                      <a className="arcane-button player-card__pdf" href={item.pdf} download target="_blank" rel="noopener noreferrer">
                         Скачать PDF чарника
                       </a>
                     ) : (
@@ -86,10 +88,10 @@ export default function Players() {
                     )}
                   </div>
                 </article>
-              </li>
+              </div>
             );
           })}
-        </ul>
+        </CardMasonry>
       )}
     </div>
   );

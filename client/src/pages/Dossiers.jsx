@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useDataStore } from '../store/useDataStore';
 import AgentCard from '../components/AgentCard';
+import CardMasonry from '../components/CardMasonry';
 import EntityModal from '../components/EntityModal';
 import { formatName } from '../components/AgentCard';
 import '../styles/pages/dossiers.scss';
@@ -39,13 +40,13 @@ export default function Dossiers() {
           onChange={(e) => setFilter(e.target.value)}
         />
       </div>
-      <ul className="dossiers__list">
+      <CardMasonry className="dossiers__list">
         {filtered.map((item, i) => (
-          <li key={i} className="dossiers__item">
+          <div key={i} className="dossiers__item">
             <AgentCard item={item} category={item.category} onClick={() => setSelected(item)} />
-          </li>
+          </div>
         ))}
-      </ul>
+      </CardMasonry>
       <p className="dossiers__count">Найдено записей: {filtered.length}</p>
       {filtered.length === 0 && <p className="page__muted">Нет записей.</p>}
       <EntityModal

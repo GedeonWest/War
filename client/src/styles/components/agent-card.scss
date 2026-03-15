@@ -26,8 +26,10 @@
 }
 
 .agent-card__media {
-  aspect-ratio: 1;
+  aspect-ratio: 3 / 4;
+  max-height: 320px;
   background-color: $color-border;
+  overflow: hidden;
 }
 
 .agent-card__img {
@@ -113,6 +115,6 @@
 
 @media (max-width: $breakpoint-md) {
   .agent-card__media {
-    aspect-ratio: 3 / 2;
+    max-height: 280px;
   }
 }

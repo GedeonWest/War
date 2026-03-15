@@ -25,8 +25,6 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  display: grid;
-  gap: $spacing-m;
 }
 
 .dossiers__item {
@@ -41,11 +39,6 @@
   padding-top: $spacing-s;
 }
 
-@media (min-width: $breakpoint-md) {
-  .dossiers__list {
-    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-  }
-}
 
 @media (max-width: $breakpoint-md) {
   .dossiers__search {

@@ -118,6 +118,7 @@
 .map-card__media {
   background: #dbe5f4;
   aspect-ratio: 16 / 9;
+  overflow: hidden;
 }
 
 .map-card__img {
@@ -157,9 +158,5 @@
 
   .maps-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .maps-grid__item_wide {
-    grid-column: span 2;
   }
 }

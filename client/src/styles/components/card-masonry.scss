@@ -1,0 +1,15 @@
+@use '../base/variables' as *;
+
+.card-masonry {
+  display: flex;
+  margin-left: -#{$spacing-m};
+}
+
+.card-masonry__column {
+  padding-left: $spacing-m;
+  background-clip: padding-box;
+}
+
+.card-masonry__column > * {
+  margin-bottom: $spacing-m;
+}

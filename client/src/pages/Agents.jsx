@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useDataStore } from '../store/useDataStore';
 import AgentCard from '../components/AgentCard';
+import CardMasonry from '../components/CardMasonry';
 import EntityModal from '../components/EntityModal';
 import '../styles/pages/agents.scss';
 
@@ -67,13 +68,13 @@ export default function Agents() {
             <span>{label}</span>
             <em className="agents__section-count">{list.length}</em>
           </h2>
-          <ul className="agents__list">
+          <CardMasonry className="agents__list">
             {list.map((item, i) => (
-              <li key={i} className="agents__item">
+              <div key={i} className="agents__item">
                 <AgentCard item={item} category={label} onClick={() => setSelected({ item, label })} />
-              </li>
+              </div>
             ))}
-          </ul>
+          </CardMasonry>
           {list.length === 0 && <p className="page__muted">Нет записей.</p>}
         </section>
       ))}
