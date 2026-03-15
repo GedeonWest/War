@@ -3,6 +3,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import Layout from './components/Layout';
 import Home from './pages/Home';
 import Agents from './pages/Agents';
+import Artifacts from './pages/Artifacts';
 import Dossiers from './pages/Dossiers';
 import Deceased from './pages/Deceased';
 import Resources from './pages/Resources';
@@ -18,6 +19,7 @@ function App() {
         <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/agents" element={<Agents />} />
+        <Route path="/artifacts" element={<Artifacts />} />
         <Route path="/dossiers" element={<Dossiers />} />
         <Route path="/deceased" element={<Deceased />} />
         <Route path="/resources" element={<Resources />} />

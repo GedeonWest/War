@@ -1,0 +1,38 @@
+@use '../base/variables' as *;
+
+.artifacts__toolbar {
+  margin-bottom: $spacing-l;
+}
+
+.artifacts__search {
+  width: 100%;
+  max-width: 560px;
+  padding: 12px 14px;
+  border: 1px solid $color-border;
+  border-radius: $radius-s;
+  font-size: 1rem;
+  color: $color-text;
+  background-color: $color-bg-soft;
+
+  &:focus {
+    outline: none;
+    border-color: rgba($color-brand-blue, 0.8);
+    box-shadow: 0 0 0 3px rgba($color-brand-blue, 0.12);
+  }
+}
+
+.artifacts__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.artifacts__item {
+  margin: 0;
+}
+
+@media (max-width: $breakpoint-md) {
+  .artifacts__search {
+    max-width: 100%;
+  }
+}

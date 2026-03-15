@@ -6,6 +6,7 @@ import '../styles/components/layout.scss';
 const navItems = [
   { path: '/', label: 'Главная' },
   { path: '/agents', label: 'Агенты' },
+  { path: '/artifacts', label: 'Артефакты' },
   { path: '/dossiers', label: 'Досье' },
   { path: '/deceased', label: 'Погибшие' },
   { path: '/resources', label: 'Ресурсы' },
