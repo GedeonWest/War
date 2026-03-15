@@ -21,7 +21,7 @@ export default function Maps() {
           {maps.map((item, i) => (
             <li
               key={`${item.title || 'map'}-${i}`}
-              className={`maps-grid__item ${i % 3 === 0 ? 'maps-grid__item_wide' : ''}`}
+              className="maps-grid__item"
               onClick={() => setSelectedMap(item)}
             >
               <article className="map-card">
