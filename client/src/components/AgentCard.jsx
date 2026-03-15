@@ -1,5 +1,26 @@
 import '../styles/components/agent-card.scss';
 
+const CATEGORY_LABELS = {
+  npcs: 'НПС',
+  artifacts: 'Артефакты',
+  active: 'Активные',
+  agent: 'Агенты',
+  crown: 'Корона',
+  secrown: 'Претенденты на корону',
+  target: 'Цели',
+  inactive: 'Неактивные',
+  legacy: 'Наследие',
+  prison: 'В заключении',
+};
+
+function getCategoryDisplay(category, item) {
+  if (!category) return '';
+  if (category === 'npcs' || category === 'НПС') {
+    return (item.role || item.title || '').trim() || '';
+  }
+  return CATEGORY_LABELS[category] || category;
+}
+
 export function formatName(item) {
   const parts = [item.announce, item.title, item.name, item.surname].filter(Boolean);
   return parts.join(' ').trim() || item.title || item.name || '—';
@@ -13,6 +34,7 @@ export default function AgentCard({ item, category, onClick }) {
   const name = formatName(item);
   const shortText = getShortText(item);
   const image = item.imgref || item.image;
+  const categoryDisplay = getCategoryDisplay(category, item);
 
   return (
     <article className={`agent-card ${onClick ? 'agent-card_clickable' : ''}`}>
@@ -30,8 +52,8 @@ export default function AgentCard({ item, category, onClick }) {
       </div>
       <div className="agent-card__body">
         <h2 className="agent-card__title">{name}</h2>
-        {category && (
-          <span className="agent-card__category">{category}</span>
+        {categoryDisplay && (
+          <span className="agent-card__category">{categoryDisplay}</span>
         )}
         {item.role && <p className="agent-card__attitude">{item.role}</p>}
         {item.attitude && !item.role && <p className="agent-card__attitude">Отношение: {item.attitude}</p>}
