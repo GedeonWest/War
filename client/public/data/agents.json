@@ -35,14 +35,17 @@
       "image": "https://imgur.com/a/xXBS7HV"
     },
     {
-      "name": "Новый тестовый перс",
-      "role": "",
-      "status": "",
-      "attitude": "",
-      "shortDescription": "",
-      "description": "",
-      "details": "",
-      "image": ""
+      "name": "Барон Николаус Окерра",
+      "role": "Член Сената",
+      "status": "Жив",
+      "attitude": "Положительное",
+      "category": "active",
+      "isActive": false,
+      "inPrison": false,
+      "shortDescription": "Барон Графства Мератт на юге Вердуранского Леса",
+      "description": "Человек чести и порядка. К своим 40 годам заслужил себе немалую славу схватками на аренах и лидерскими качествами. Статный, сдержанный и прямолинейный.  ",
+      "details": "Сомневается в правильности изменения законов Талдора.\nВдовец.\nОдин ребенок - Дочь. ",
+      "image": "https://imgur.com/8zNdOVr"
     }
   ],
   "artifacts": [],
