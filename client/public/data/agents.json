@@ -176,6 +176,19 @@
       "description": "",
       "details": "",
       "image": "https://i.imgur.com/knGf48J.jpeg"
+    },
+    {
+      "name": "Мальфина Трант",
+      "role": "Дочь Сенатора",
+      "status": "Жива",
+      "attitude": "Нейтральное",
+      "category": "active",
+      "isActive": false,
+      "inPrison": false,
+      "shortDescription": "Дочь Сенатора Аронда Транта.",
+      "description": "",
+      "details": "",
+      "image": "https://i.imgur.com/49M8oY5.jpeg"
     }
   ],
   "artifacts": [],
