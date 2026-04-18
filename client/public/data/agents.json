@@ -98,6 +98,58 @@
       "description": "Не приветствует обсуждение политики и быстро обрывает подобные разговоры. Однако в ходе общения было выяснено, что охотно общается на тему дрессировки животных, а так же всего в чем присутствует противостояние природным трудностям.",
       "details": "",
       "image": "https://i.imgur.com/CJ4mFit.jpeg"
+    },
+    {
+      "name": "Кальбио из Ветренного Кряжа",
+      "role": "Текстильщик/Удостоенный чести возвышения",
+      "status": "Жив",
+      "attitude": "Положительное",
+      "category": "active",
+      "isActive": false,
+      "inPrison": false,
+      "shortDescription": "Мужчина в ранних 30, простой провинциальный работяга, абсолютно потерявшийся в столичном лоске.",
+      "description": "",
+      "details": "",
+      "image": "https://i.imgur.com/zRSOsB4.jpeg"
+    },
+    {
+      "name": "Принцесса Этропия Ставиан Первая",
+      "role": "Первая леди Талдора",
+      "status": "Жива",
+      "attitude": "Нейтральное",
+      "category": "active",
+      "isActive": false,
+      "inPrison": false,
+      "shortDescription": "Скандально обольстительная и обезоруживающе красноречивая, единственная дочь Ставиана Третьего",
+      "description": "",
+      "details": "",
+      "image": "https://i.imgur.com/b9Fq1tE.jpeg"
+    },
+    {
+      "name": "Высилька Фантасматичная",
+      "role": "Профессиональный артист",
+      "status": "Жива",
+      "attitude": "Положительное",
+      "category": "active",
+      "isActive": false,
+      "inPrison": false,
+      "shortDescription": "Полурослик с милой внешностью и звонким голосом. ",
+      "description": "",
+      "details": "",
+      "image": "https://i.imgur.com/502mt6k.jpeg"
+    },
+    {
+      "name": "Виконт Октавия Никодемиус",
+      "role": "Член Сената/Хранитель Бескрайнего Репозитория",
+      "status": "Жива",
+      "attitude": "Нейтральное",
+      "category": "active",
+      "isActive": false,
+      "inPrison": false,
+      "shortDescription": "Одна из старейших членов сената, в своем 9ом десятке все ещё не отойдя от дел принимает участие в слушаньях сената и является хранителем Бескрайнего Репозитория.",
+      "description": "",
+      "details": "",
+      "image": "https://i.imgur.com/8OxKsYe.jpeg"
     }
   ],
   "artifacts": [],
