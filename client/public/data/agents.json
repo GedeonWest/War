@@ -150,6 +150,32 @@
       "description": "",
       "details": "",
       "image": "https://i.imgur.com/8OxKsYe.jpeg"
+    },
+    {
+      "name": "Герцог Жорджи Бакус Талбот Второй",
+      "role": "Член Сената",
+      "status": "Жив",
+      "attitude": "Нейтральное",
+      "category": "active",
+      "isActive": false,
+      "inPrison": false,
+      "shortDescription": "Торговый магнат и по совместительству Сенатор Талдора",
+      "description": "",
+      "details": "",
+      "image": "https://i.imgur.com/eoP90G6.jpeg"
+    },
+    {
+      "name": "Граф Орландо Зеспайр",
+      "role": "Член Сената",
+      "status": "Жив",
+      "attitude": "Положительное?",
+      "category": "active",
+      "isActive": false,
+      "inPrison": false,
+      "shortDescription": "Лена добавит позже описание мб)",
+      "description": "",
+      "details": "",
+      "image": "https://i.imgur.com/knGf48J.jpeg"
     }
   ],
   "artifacts": [],
