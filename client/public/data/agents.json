@@ -104,7 +104,7 @@
       "role": "Текстильщик/Удостоенный чести возвышения",
       "status": "Мертв",
       "attitude": "Положительное",
-      "category": "active",
+      "category": "inactive",
       "isActive": false,
       "inPrison": false,
       "shortDescription": "Мужчина в ранних 30, простой провинциальный работяга, абсолютно потерявшийся в столичном лоске.",
@@ -201,7 +201,7 @@
       "shortDescription": "",
       "description": "",
       "details": "Имеет мастерскую для реставрации вещей.\nХорошо общалась с Eirene Zespire, с которой познакомилась на Гала в честь Дня Возвышения",
-      "image": "https://sun9-25.userapi.com/s/v1/ig2/6eMe2mjW_BtHHJJpgUflQnA5zRC5X0tf7wSHIvZz8NbY5N1BZ82HuIkT1tsuPoVF7xwg6aWfacM7r-gQg6dv-hKO.jpg?quality=95&as=32x43,48x64,72x97,108x145,160x215,240x322,360x484,480x645,540x726,640x860,720x967,736x989&from=bu&u=p6f8VGI2q1m_t8sV48lidAnY-jL-MXOSu5ojEy1YTKE&cs=736x0"
+      "image": ""
     },
     {
       "name": "Пабрус Телкам",
@@ -227,7 +227,7 @@
       "shortDescription": "",
       "description": "",
       "details": "Хорошо общался с Eirene Zespire, с которой познакомился на Гала в честь Дня Возвышения. Передал ей фамильное кольцо, которое может служить пропуском в его дом.",
-      "image": "https://messages-prod.27c852f3500f38c1e7786e2c9ff9e48f.r2.cloudflarestorage.com/019bea3e-19c9-7d0d-8603-a32a744845f1/1777060906432-019dc114-c7c8-70b0-9170-23d02a91918b.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=b33de61d4f22a31b59b25364ab5037c5%2F20260424%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20260424T200146Z&X-Amz-Expires=3600&X-Amz-Signature=756ec49a92f5837896a352871fc056c5bbc7e7e0850f6e175b43e35aace3a5c4&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+      "image": ""
     },
     {
       "name": "Дедриен Нос",
@@ -240,7 +240,7 @@
       "shortDescription": "",
       "description": "",
       "details": "Хорошо общался с Eirene Zespire, с которой познакомился на Гала в честь Дня Возвышения. Всегда имеет под рукой пару зелий защиты от ядов.",
-      "image": "https://messages-prod.27c852f3500f38c1e7786e2c9ff9e48f.r2.cloudflarestorage.com/019bea3e-19c9-7d0d-8603-a32a744845f1/1777060562943-019dc10f-94ca-7bdc-9037-abcf6f30a730.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=b33de61d4f22a31b59b25364ab5037c5%2F20260424%2Fauto%2Fs3%2Faws4_request&X-Amz-Date=20260424T200009Z&X-Amz-Expires=3600&X-Amz-Signature=d740104dbffb2a30eed794e9f8136a3f606019f2952f2512a5131907ed51686e&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject"
+      "image": ""
     },
     {
       "name": "Амадориан Доу",
